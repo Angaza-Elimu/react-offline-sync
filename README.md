@@ -1,1 +1,1 @@
-# react-offline-sync
+# react-offline-first
