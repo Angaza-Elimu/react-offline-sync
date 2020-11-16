@@ -7,5 +7,15 @@ interface Props {
 }
 
 export const InitialComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+  React.useEffect(function() {
+    SQLite.DEBUG(true);
+    SQLite.enablePromise(true);
+    SQLite.openDatabase({
+      name: 'OfflineStorage',
+      location: "default"
+    }).then((db) => {
+      console.log("Database open!");
+  });
+  }, [])
+  return 
 }

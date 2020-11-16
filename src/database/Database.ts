@@ -2,8 +2,7 @@ import SQLite from "react-native-sqlite-storage";
 import { DatabaseInitialization } from "./DatabaseInitialization";
 import { DATABASE } from "./Constants";
 import { List } from "../types/List";
-import { ListItem } from "../types/ListItem";
-import { DATABASE } from "./Constants";
+import { ListItem } from "../types/ListItem"
 import { DropboxDatabaseSync } from "../sync/dropbox/DropboxDatabaseSync";
 import { AppState, AppStateStatus } from "react-native";
 
