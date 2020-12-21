@@ -1,7 +1,7 @@
 
 # React Native Offline First and sync
 
-This project is a basic List application that demonstrates building an offline first app with SQLite and React Native (featuring TypeScript and CocoaPods under the hood). Once authorized, the database can be synced between multiple devices. 
+This project is a library that implements an offline first approach with SQLite and React Native (featuring TypeScript and CocoaPods under the hood). Once authorized, the database can be synced between multiple devices. 
 
 These instructions only cover iOS usage at this time.
 
