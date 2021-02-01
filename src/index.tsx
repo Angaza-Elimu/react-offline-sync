@@ -1,5 +1,4 @@
 import * as React from 'react'
-import styles from './styles.module.css'
 import SQLite from "react-native-sqlite-storage";
 
 interface Props {
@@ -9,6 +8,7 @@ interface Props {
 export const InitialComponent = ({ text }: Props) => {
   React.useEffect(function() {
     SQLite.DEBUG(true);
+    console.log(text);
     SQLite.enablePromise(true);
     SQLite.openDatabase({
       name: 'OfflineStorage',
