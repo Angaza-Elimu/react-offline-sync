@@ -1,21 +1,17 @@
-import * as React from 'react'
-import SQLite from "react-native-sqlite-storage";
+import * as offlineActionTypes from './redux/actionTypes';
+import * as offlineActionCreators from './redux/actionCreators';
+import _reducer from './redux/createReducer';
 
-interface Props {
-  text: string
-}
+export { default as NetworkProvider } from './components/NetworkProvider';
+export { default as ReduxNetworkProvider } from './components/ReduxNetworkProvider';
+export { default as NetworkConsumer } from './components/NetworkConsumer';
 
-export const InitialComponent = ({ text }: Props) => {
-  React.useEffect(function() {
-    SQLite.DEBUG(true);
-    console.log(text);
-    SQLite.enablePromise(true);
-    SQLite.openDatabase({
-      name: 'OfflineStorage',
-      location: "default"
-    }).then((db) => {
-      console.log("Database open!");
-  });
-  }, [])
-  return 
-}
+export { default as createNetworkMiddleware } from './redux/createNetworkMiddleware';
+
+export { default as networkSaga } from './redux/sagas';
+export { default as checkInternetConnection } from './utils/checkInternetConnection';
+
+export const createReducer = _reducer;
+export const reducer = _reducer();
+
+export { offlineActionCreators, offlineActionTypes };

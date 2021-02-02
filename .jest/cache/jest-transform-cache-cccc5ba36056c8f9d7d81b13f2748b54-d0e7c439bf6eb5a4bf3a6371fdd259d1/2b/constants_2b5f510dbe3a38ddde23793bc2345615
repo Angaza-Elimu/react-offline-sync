@@ -1,0 +1,274 @@
+bb5b04602d3abc868ff506f4387a7049
+/* istanbul ignore next */
+var cov_26hks9e0hm = function () {
+  var path = "/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/constants.ts";
+  var hash = "6dcfd6c09fca8fb02dc5c71eda3006e1f2d199ba";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/constants.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 3,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 4,
+          column: 0
+        },
+        end: {
+          line: 4,
+          column: 208
+        }
+      },
+      "2": {
+        start: {
+          line: 5,
+          column: 25
+        },
+        end: {
+          line: 5,
+          column: 62
+        }
+      },
+      "3": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 6,
+          column: 48
+        }
+      },
+      "4": {
+        start: {
+          line: 7,
+          column: 22
+        },
+        end: {
+          line: 7,
+          column: 27
+        }
+      },
+      "5": {
+        start: {
+          line: 8,
+          column: 0
+        },
+        end: {
+          line: 8,
+          column: 42
+        }
+      },
+      "6": {
+        start: {
+          line: 9,
+          column: 30
+        },
+        end: {
+          line: 9,
+          column: 55
+        }
+      },
+      "7": {
+        start: {
+          line: 10,
+          column: 0
+        },
+        end: {
+          line: 10,
+          column: 58
+        }
+      },
+      "8": {
+        start: {
+          line: 11,
+          column: 26
+        },
+        end: {
+          line: 11,
+          column: 32
+        }
+      },
+      "9": {
+        start: {
+          line: 12,
+          column: 0
+        },
+        end: {
+          line: 12,
+          column: 50
+        }
+      },
+      "10": {
+        start: {
+          line: 13,
+          column: 29
+        },
+        end: {
+          line: 13,
+          column: 31
+        }
+      },
+      "11": {
+        start: {
+          line: 14,
+          column: 0
+        },
+        end: {
+          line: 14,
+          column: 56
+        }
+      },
+      "12": {
+        start: {
+          line: 15,
+          column: 22
+        },
+        end: {
+          line: 18,
+          column: 1
+        }
+      },
+      "13": {
+        start: {
+          line: 19,
+          column: 0
+        },
+        end: {
+          line: 19,
+          column: 42
+        }
+      },
+      "14": {
+        start: {
+          line: 20,
+          column: 19
+        },
+        end: {
+          line: 29,
+          column: 1
+        }
+      },
+      "15": {
+        start: {
+          line: 30,
+          column: 0
+        },
+        end: {
+          line: 30,
+          column: 36
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0
+    },
+    f: {},
+    b: {},
+    _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
+    hash: "6dcfd6c09fca8fb02dc5c71eda3006e1f2d199ba"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (coverage[path] && coverage[path].hash === hash) {
+    return coverage[path];
+  }
+
+  return coverage[path] = coverageData;
+}();
+
+cov_26hks9e0hm.s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[1]++;
+exports.DEFAULT_ARGS = exports.SEMAPHORE_COLOR = exports.DEFAULT_CUSTOM_HEADERS = exports.DEFAULT_HTTP_METHOD = exports.DEFAULT_PING_SERVER_URL = exports.DEFAULT_TIMEOUT = exports.CACHE_HEADER_VALUE = void 0;
+var CACHE_HEADER_VALUE =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[2]++, 'no-cache, no-store, must-revalidate');
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[3]++;
+exports.CACHE_HEADER_VALUE = CACHE_HEADER_VALUE;
+var DEFAULT_TIMEOUT =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[4]++, 10000);
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[5]++;
+exports.DEFAULT_TIMEOUT = DEFAULT_TIMEOUT;
+var DEFAULT_PING_SERVER_URL =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[6]++, 'https://www.google.com/');
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[7]++;
+exports.DEFAULT_PING_SERVER_URL = DEFAULT_PING_SERVER_URL;
+var DEFAULT_HTTP_METHOD =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[8]++, 'HEAD');
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[9]++;
+exports.DEFAULT_HTTP_METHOD = DEFAULT_HTTP_METHOD;
+var DEFAULT_CUSTOM_HEADERS =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[10]++, {});
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[11]++;
+exports.DEFAULT_CUSTOM_HEADERS = DEFAULT_CUSTOM_HEADERS;
+var SEMAPHORE_COLOR =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[12]++, {
+  RED: 'RED',
+  GREEN: 'GREEN'
+});
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[13]++;
+exports.SEMAPHORE_COLOR = SEMAPHORE_COLOR;
+var DEFAULT_ARGS =
+/* istanbul ignore next */
+(cov_26hks9e0hm.s[14]++, {
+  pingTimeout: DEFAULT_TIMEOUT,
+  pingServerUrl: DEFAULT_PING_SERVER_URL,
+  shouldPing: true,
+  pingInterval: 0,
+  pingOnlyIfOffline: false,
+  pingInBackground: false,
+  httpMethod: DEFAULT_HTTP_METHOD,
+  customHeaders: DEFAULT_CUSTOM_HEADERS
+});
+
+/* istanbul ignore next */
+cov_26hks9e0hm.s[15]++;
+exports.DEFAULT_ARGS = DEFAULT_ARGS;

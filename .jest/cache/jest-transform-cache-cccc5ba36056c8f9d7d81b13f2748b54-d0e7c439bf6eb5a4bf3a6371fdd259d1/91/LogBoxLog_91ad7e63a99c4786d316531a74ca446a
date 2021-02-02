@@ -1,0 +1,142 @@
+5829cdb9fa9114a494223b94404830b5
+
+
+
+
+
+
+
+
+
+
+'use strict';var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var LogBoxSymbolication = _interopRequireWildcard(require("./LogBoxSymbolication"));var
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LogBoxLog = function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function LogBoxLog(data) {(0, _classCallCheck2.default)(this, LogBoxLog);this.symbolicated = { error: null, stack: null, status: 'NONE' };
+    this.level = data.level;
+    this.message = data.message;
+    this.stack = data.stack;
+    this.category = data.category;
+    this.componentStack = data.componentStack;
+    this.codeFrame = data.codeFrame;
+    this.isComponentError = data.isComponentError;
+    this.count = 1;
+  }(0, _createClass2.default)(LogBoxLog, [{ key: "incrementCount", value: function incrementCount()
+
+    {
+      this.count += 1;
+    } }, { key: "getAvailableStack", value: function getAvailableStack()
+
+    {
+      return this.symbolicated.status === 'COMPLETE' ?
+      this.symbolicated.stack :
+      this.stack;
+    } }, { key: "retrySymbolicate", value: function retrySymbolicate(
+
+    callback) {
+      if (this.symbolicated.status !== 'COMPLETE') {
+        LogBoxSymbolication.deleteStack(this.stack);
+        this.handleSymbolicate(callback);
+      }
+    } }, { key: "symbolicate", value: function symbolicate(
+
+    callback) {
+      if (this.symbolicated.status === 'NONE') {
+        this.handleSymbolicate(callback);
+      }
+    } }, { key: "handleSymbolicate", value: function handleSymbolicate(
+
+    callback) {var _this = this;
+      if (this.symbolicated.status !== 'PENDING') {
+        this.updateStatus(null, null, null, callback);
+        LogBoxSymbolication.symbolicate(this.stack).then(
+        function (data) {
+          _this.updateStatus(null, data == null ? void 0 : data.stack, data == null ? void 0 : data.codeFrame, callback);
+        },
+        function (error) {
+          _this.updateStatus(error, null, null, callback);
+        });
+
+      }
+    } }, { key: "updateStatus", value: function updateStatus(
+
+
+    error,
+    stack,
+    codeFrame,
+    callback)
+    {
+      var lastStatus = this.symbolicated.status;
+      if (error != null) {
+        this.symbolicated = {
+          error: error,
+          stack: null,
+          status: 'FAILED' };
+
+      } else if (stack != null) {
+        if (codeFrame) {
+          this.codeFrame = codeFrame;
+        }
+
+        this.symbolicated = {
+          error: null,
+          stack: stack,
+          status: 'COMPLETE' };
+
+      } else {
+        this.symbolicated = {
+          error: null,
+          stack: null,
+          status: 'PENDING' };
+
+      }
+
+      if (callback && lastStatus !== this.symbolicated.status) {
+        callback(this.symbolicated.status);
+      }
+    } }]);return LogBoxLog;}();var _default =
+
+
+LogBoxLog;exports.default = _default;

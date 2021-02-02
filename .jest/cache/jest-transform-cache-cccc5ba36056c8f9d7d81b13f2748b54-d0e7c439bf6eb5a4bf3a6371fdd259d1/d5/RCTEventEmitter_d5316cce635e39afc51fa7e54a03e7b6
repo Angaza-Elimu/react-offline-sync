@@ -1,0 +1,22 @@
+34aa037aebc890ca9840678b983d92fe
+
+
+
+
+
+
+
+
+
+
+'use strict';
+
+
+
+var RCTEventEmitter = {
+  register: function register(eventEmitter) {
+    require('../BatchedBridge/BatchedBridge').registerCallableModule('RCTEventEmitter', eventEmitter);
+  } };
+
+
+module.exports = RCTEventEmitter;

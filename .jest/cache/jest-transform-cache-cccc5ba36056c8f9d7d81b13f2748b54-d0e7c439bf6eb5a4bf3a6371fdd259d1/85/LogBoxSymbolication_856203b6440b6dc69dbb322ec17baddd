@@ -1,0 +1,65 @@
+d00c0cd6198e2a922c419ade7dff9e17
+
+
+
+
+
+
+
+
+
+
+'use strict';var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.deleteStack = deleteStack;exports.symbolicate = symbolicate;
+
+var _symbolicateStackTrace = _interopRequireDefault(require("../../Core/Devtools/symbolicateStackTrace"));function _createForOfIteratorHelperLoose(o, allowArrayLike) {var it;if (typeof Symbol === "undefined" || o[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] == null) {if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {if (it) o = it;var i = 0;return function () {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };};}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}it = o[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"]();return it.next.bind(it);}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+
+
+
+
+
+
+var cache = new Map();
+
+
+
+
+var sanitize = function sanitize(_ref)
+
+
+{var maybeStack = _ref.stack,codeFrame = _ref.codeFrame;
+  if (!Array.isArray(maybeStack)) {
+    throw new Error('Expected stack to be an array.');
+  }
+  var stack = [];
+  for (var _iterator = _createForOfIteratorHelperLoose(maybeStack), _step; !(_step = _iterator()).done;) {var maybeFrame = _step.value;
+    var collapse = false;
+    if ('collapse' in maybeFrame) {
+      if (typeof maybeFrame.collapse !== 'boolean') {
+        throw new Error('Expected stack frame `collapse` to be a boolean.');
+      }
+      collapse = maybeFrame.collapse;
+    }
+    stack.push({
+      column: maybeFrame.column,
+      file: maybeFrame.file,
+      lineNumber: maybeFrame.lineNumber,
+      methodName: maybeFrame.methodName,
+      collapse: collapse });
+
+  }
+  return { stack: stack, codeFrame: codeFrame };
+};
+
+function deleteStack(stack) {
+  cache.delete(stack);
+}
+
+function symbolicate(stack) {
+  var promise = cache.get(stack);
+  if (promise == null) {
+    promise = (0, _symbolicateStackTrace.default)(stack).then(sanitize);
+    cache.set(stack, promise);
+  }
+
+  return promise;
+}

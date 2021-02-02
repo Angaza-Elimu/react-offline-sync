@@ -1,0 +1,61 @@
+961cdae7cb26cce55d6ee3bf8ab74823
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactNative = require("react-native");
+
+var _reactNativeTestingLibrary = require("react-native-testing-library");
+
+var _NetworkConsumer = _interopRequireDefault(require("../components/NetworkConsumer"));
+
+var _NetworkProvider = _interopRequireDefault(require("../components/NetworkProvider"));
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var getElement = function getElement(_a) {
+  var _b = _a.props,
+      props = _b === void 0 ? {} : _b,
+      _c = _a.children,
+      children = _c === void 0 ? null : _c;
+  return _react.default.createElement(_NetworkProvider.default, __assign({}, props), children);
+};
+
+function Consumer() {
+  return _react.default.createElement(_NetworkConsumer.default, null, function (_a) {
+    var isConnected = _a.isConnected;
+    return _react.default.createElement(_reactNative.Text, {
+      testID: "connectionText"
+    }, "Connected: " + isConnected);
+  });
+}
+
+describe.only('NetworkConsumer', function () {
+  it("throws if it's not rendered within the Provider", function () {
+    expect(function () {
+      return (0, _reactNativeTestingLibrary.render)(_react.default.createElement(Consumer, null));
+    }).toThrow('NetworkConsumer components should be rendered within NetworkProvider. ' + 'Make sure you are rendering a NetworkProvider at the top of your component hierarchy');
+  });
+  it('receives isConnected prop from Provider using context', function () {
+    var getByTestId = (0, _reactNativeTestingLibrary.render)(getElement({
+      children: _react.default.createElement(Consumer, null)
+    })).getByTestId;
+    var textChild = getByTestId('connectionText');
+    expect(textChild.props.children).toBe('Connected: true');
+  });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9EZXZBQy9EZXNrdG9wL0FuZ2F6YS9yZWFjdC1vZmZsaW5lLXN5bmMvc3JjL3Rlc3QvTmV0d29ya0NvbnN1bWVyLnRlc3QudHN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUE7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBQ0E7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUdBLElBQU0sVUFBVSxHQUFHLFNBQWIsVUFBYSxDQUFDLEVBQUQsRUFNbEI7TUFMQyxFQUFBLEdBQUEsRUFBQSxDQUFBLEs7TUFBQSxLQUFBLEdBQUEsRUFBQSxLQUFBLEtBQUEsQ0FBQSxHQUFBLEVBQUEsR0FBQSxFO01BQ0EsRUFBQSxHQUFBLEVBQUEsQ0FBQSxRO01BQUEsUUFBQSxHQUFBLEVBQUEsS0FBQSxLQUFBLENBQUEsR0FBQSxJQUFBLEdBQUEsRTtBQUlJLFNBQUEsZUFBQSxhQUFBLENBQUMsd0JBQUQsRUFBZ0IsUUFBQSxDQUFBLEVBQUEsRUFBSyxLQUFMLENBQWhCLEVBQTZCLFFBQTdCLENBQUE7QUFBd0QsQ0FOOUQ7O0FBUUEsU0FBUyxRQUFULEdBQWlCO0FBQ2YsU0FDRSxlQUFBLGFBQUEsQ0FBQyx3QkFBRCxFQUFnQixJQUFoQixFQUNHLFVBQUMsRUFBRCxFQUFnQjtRQUFiLFdBQUEsR0FBQSxFQUFBLENBQUEsVztBQUFrQixXQUNwQixlQUFBLGFBQUEsQ0FBQyxpQkFBRCxFQUFLO0FBQUMsTUFBQSxNQUFNLEVBQUM7QUFBUixLQUFMLEVBQStCLGdCQUFjLFdBQTdDLENBRG9CO0FBRXJCLEdBSEgsQ0FERjtBQU9EOztBQUVELFFBQVEsQ0FBQyxJQUFULENBQWMsaUJBQWQsRUFBaUMsWUFBQTtBQUMvQixFQUFBLEVBQUUsQ0FBQyxpREFBRCxFQUFvRCxZQUFBO0FBQ3BELElBQUEsTUFBTSxDQUFDLFlBQUE7QUFBTSxhQUFBLHVDQUFPLGVBQUEsYUFBQSxDQUFDLFFBQUQsRUFBUCxJQUFPLENBQVAsQ0FBQTtBQUFvQixLQUEzQixDQUFOLENBQW1DLE9BQW5DLENBQ0UsMkVBQ0Usc0ZBRko7QUFJRCxHQUxDLENBQUY7QUFPQSxFQUFBLEVBQUUsQ0FBQyx1REFBRCxFQUEwRCxZQUFBO0FBQ2xELFFBQUEsV0FBQSxHQUFBLHVDQUFBLFVBQUEsQ0FBQTtBQUFBLE1BQUEsUUFBQSxFQUFBLGVBQUEsYUFBQSxDQUFBLFFBQUEsRUFBQSxJQUFBO0FBQUEsS0FBQSxDQUFBLEVBQUEsV0FBQTtBQUNSLFFBQU0sU0FBUyxHQUFHLFdBQVcsQ0FBQyxnQkFBRCxDQUE3QjtBQUNBLElBQUEsTUFBTSxDQUFDLFNBQVMsQ0FBQyxLQUFWLENBQWdCLFFBQWpCLENBQU4sQ0FBaUMsSUFBakMsQ0FBc0MsaUJBQXRDO0FBQ0QsR0FKQyxDQUFGO0FBS0QsQ0FiRCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwgeyBSZWFjdE5vZGUgfSBmcm9tICdyZWFjdCc7XG5pbXBvcnQgeyBUZXh0IH0gZnJvbSAncmVhY3QtbmF0aXZlJztcbmltcG9ydCB7IHJlbmRlciB9IGZyb20gJ3JlYWN0LW5hdGl2ZS10ZXN0aW5nLWxpYnJhcnknO1xuaW1wb3J0IE5ldHdvcmtDb25zdW1lciBmcm9tICcuLi9jb21wb25lbnRzL05ldHdvcmtDb25zdW1lcic7XG5pbXBvcnQgTmV0d29ya1Byb3ZpZGVyIGZyb20gJy4uL2NvbXBvbmVudHMvTmV0d29ya1Byb3ZpZGVyJztcblxudHlwZSBOZXR3b3JrUHJvdmlkZXJQcm9wcyA9IFJlYWN0LkNvbXBvbmVudFByb3BzPHR5cGVvZiBOZXR3b3JrUHJvdmlkZXI+O1xuY29uc3QgZ2V0RWxlbWVudCA9ICh7XG4gIHByb3BzID0ge30gYXMgTmV0d29ya1Byb3ZpZGVyUHJvcHMsXG4gIGNoaWxkcmVuID0gbnVsbCxcbn06IHtcbiAgcHJvcHM/OiBOZXR3b3JrUHJvdmlkZXJQcm9wcztcbiAgY2hpbGRyZW46IG51bGwgfCBSZWFjdE5vZGU7XG59KSA9PiA8TmV0d29ya1Byb3ZpZGVyIHsuLi5wcm9wc30+e2NoaWxkcmVufTwvTmV0d29ya1Byb3ZpZGVyPjtcblxuZnVuY3Rpb24gQ29uc3VtZXIoKSB7XG4gIHJldHVybiAoXG4gICAgPE5ldHdvcmtDb25zdW1lcj5cbiAgICAgIHsoeyBpc0Nvbm5lY3RlZCB9KSA9PiAoXG4gICAgICAgIDxUZXh0IHRlc3RJRD1cImNvbm5lY3Rpb25UZXh0XCI+e2BDb25uZWN0ZWQ6ICR7aXNDb25uZWN0ZWR9YH08L1RleHQ+XG4gICAgICApfVxuICAgIDwvTmV0d29ya0NvbnN1bWVyPlxuICApO1xufVxuXG5kZXNjcmliZS5vbmx5KCdOZXR3b3JrQ29uc3VtZXInLCAoKSA9PiB7XG4gIGl0KGB0aHJvd3MgaWYgaXQncyBub3QgcmVuZGVyZWQgd2l0aGluIHRoZSBQcm92aWRlcmAsICgpID0+IHtcbiAgICBleHBlY3QoKCkgPT4gcmVuZGVyKDxDb25zdW1lciAvPikpLnRvVGhyb3coXG4gICAgICAnTmV0d29ya0NvbnN1bWVyIGNvbXBvbmVudHMgc2hvdWxkIGJlIHJlbmRlcmVkIHdpdGhpbiBOZXR3b3JrUHJvdmlkZXIuICcgK1xuICAgICAgICAnTWFrZSBzdXJlIHlvdSBhcmUgcmVuZGVyaW5nIGEgTmV0d29ya1Byb3ZpZGVyIGF0IHRoZSB0b3Agb2YgeW91ciBjb21wb25lbnQgaGllcmFyY2h5JyxcbiAgICApO1xuICB9KTtcblxuICBpdCgncmVjZWl2ZXMgaXNDb25uZWN0ZWQgcHJvcCBmcm9tIFByb3ZpZGVyIHVzaW5nIGNvbnRleHQnLCAoKSA9PiB7XG4gICAgY29uc3QgeyBnZXRCeVRlc3RJZCB9ID0gcmVuZGVyKGdldEVsZW1lbnQoeyBjaGlsZHJlbjogPENvbnN1bWVyIC8+IH0pKTtcbiAgICBjb25zdCB0ZXh0Q2hpbGQgPSBnZXRCeVRlc3RJZCgnY29ubmVjdGlvblRleHQnKTtcbiAgICBleHBlY3QodGV4dENoaWxkLnByb3BzLmNoaWxkcmVuKS50b0JlKCdDb25uZWN0ZWQ6IHRydWUnKTtcbiAgfSk7XG59KTtcbiJdfQ==

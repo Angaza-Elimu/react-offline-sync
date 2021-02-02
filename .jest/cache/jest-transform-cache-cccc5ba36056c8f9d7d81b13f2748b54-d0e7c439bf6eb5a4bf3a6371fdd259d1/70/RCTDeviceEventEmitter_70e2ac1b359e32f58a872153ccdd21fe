@@ -1,0 +1,85 @@
+6005d764549f48d60a555ea1226ff4cd
+
+
+
+
+
+
+
+
+
+
+'use strict';function _createSuper(Derived) {var hasNativeReflectConstruct = _isNativeReflectConstruct();return function _createSuperInternal() {var Super = require("@babel/runtime/helpers/getPrototypeOf")(Derived),result;if (hasNativeReflectConstruct) {var NewTarget = require("@babel/runtime/helpers/getPrototypeOf")(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return require("@babel/runtime/helpers/possibleConstructorReturn")(this, result);};}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}
+
+
+
+
+
+
+function checkNativeEventModule(eventType) {
+  if (eventType) {
+    if (eventType.lastIndexOf('statusBar', 0) === 0) {
+      throw new Error(
+      '`' +
+      eventType +
+      '` event should be registered via the StatusBarIOS module');
+
+    }
+    if (eventType.lastIndexOf('keyboard', 0) === 0) {
+      throw new Error(
+      '`' +
+      eventType +
+      '` event should be registered via the Keyboard module');
+
+    }
+    if (eventType === 'appStateDidChange' || eventType === 'memoryWarning') {
+      throw new Error(
+      '`' +
+      eventType +
+      '` event should be registered via the AppState module');
+
+    }
+  }
+}var
+
+
+
+
+
+RCTDeviceEventEmitter = function (_EventEmitter) {require("@babel/runtime/helpers/inherits")(RCTDeviceEventEmitter, _EventEmitter);var _super = _createSuper(RCTDeviceEventEmitter);
+
+
+  function RCTDeviceEventEmitter() {var _this;require("@babel/runtime/helpers/classCallCheck")(this, RCTDeviceEventEmitter);
+    var sharedSubscriber = new (require('../vendor/emitter/EventSubscriptionVendor'))();
+    _this = _super.call(this, sharedSubscriber);
+    _this.sharedSubscriber = sharedSubscriber;return _this;
+  }require("@babel/runtime/helpers/createClass")(RCTDeviceEventEmitter, [{ key: "addListener", value: function addListener(
+
+
+    eventType,
+    listener,
+    context)
+    {
+      if (__DEV__) {
+        checkNativeEventModule(eventType);
+      }
+      return require("@babel/runtime/helpers/get")(require("@babel/runtime/helpers/getPrototypeOf")(RCTDeviceEventEmitter.prototype), "addListener", this).call(this, eventType, listener, context);
+    } }, { key: "removeAllListeners", value: function removeAllListeners(
+
+    eventType) {
+      if (__DEV__) {
+        checkNativeEventModule(eventType);
+      }
+      require("@babel/runtime/helpers/get")(require("@babel/runtime/helpers/getPrototypeOf")(RCTDeviceEventEmitter.prototype), "removeAllListeners", this).call(this, eventType);
+    } }, { key: "removeSubscription", value: function removeSubscription(
+
+    subscription) {
+      if (subscription.emitter !== this) {
+        subscription.emitter.removeSubscription(subscription);
+      } else {
+        require("@babel/runtime/helpers/get")(require("@babel/runtime/helpers/getPrototypeOf")(RCTDeviceEventEmitter.prototype), "removeSubscription", this).call(this, subscription);
+      }
+    } }]);return RCTDeviceEventEmitter;}(require('../vendor/emitter/EventEmitter'));
+
+
+module.exports = new RCTDeviceEventEmitter();

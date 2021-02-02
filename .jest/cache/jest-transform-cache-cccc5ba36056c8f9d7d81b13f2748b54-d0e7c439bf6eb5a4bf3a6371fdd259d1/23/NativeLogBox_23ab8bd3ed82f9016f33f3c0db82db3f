@@ -1,0 +1,22 @@
+7a87a660d8a05f72280858d647de3ad2
+
+
+
+
+
+
+
+
+
+
+'use strict';var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+var TurboModuleRegistry = _interopRequireWildcard(require("react-native/Libraries/TurboModule/TurboModuleRegistry"));var _default =
+
+
+
+
+
+
+TurboModuleRegistry.get('LogBox');exports.default = _default;

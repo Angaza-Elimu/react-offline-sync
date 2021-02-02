@@ -1,0 +1,269 @@
+d2cf275506685181e1310505c33515a9
+
+
+
+
+
+
+
+
+
+
+'use strict';var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.parseCategory = parseCategory;exports.parseComponentStack = parseComponentStack;exports.parseLogBoxException = parseLogBoxException;exports.parseLogBoxLog = parseLogBoxLog;var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
+var _UTFSequence = _interopRequireDefault(require("../../UTFSequence"));
+var _stringifySafe = _interopRequireDefault(require("../../Utilities/stringifySafe"));function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {(0, _defineProperty2.default)(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _createForOfIteratorHelperLoose(o, allowArrayLike) {var it;if (typeof Symbol === "undefined" || o[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] == null) {if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {if (it) o = it;var i = 0;return function () {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };};}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}it = o[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"]();return it.next.bind(it);}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+
+
+
+var BABEL_TRANSFORM_ERROR_FORMAT = /^(?:TransformError )?(?:SyntaxError: |ReferenceError: )(.*): (.*) \((\d+):(\d+)\)\n\n([\s\S]+)/;
+var BABEL_CODE_FRAME_ERROR_FORMAT = /^(?:TransformError )?(?:(?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*): ((?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*): ((?:[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+?)\n([ >]{2}[\t-\r 0-9\xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF]+ \|(?:[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+|\x1B(?:[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)/;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var SUBSTITUTION = _UTFSequence.default.BOM + '%s';
+
+function parseCategory(
+args)
+
+
+
+{
+  var categoryParts = [];
+  var contentParts = [];
+  var substitutionOffsets = [];
+
+  var remaining = (0, _toConsumableArray2.default)(args);
+  if (typeof remaining[0] === 'string') {
+    var formatString = String(remaining.shift());
+    var formatStringParts = formatString.split('%s');
+    var substitutionCount = formatStringParts.length - 1;
+    var substitutions = remaining.splice(0, substitutionCount);
+
+    var categoryString = '';
+    var contentString = '';
+
+    var substitutionIndex = 0;
+    for (var _iterator = _createForOfIteratorHelperLoose(formatStringParts), _step; !(_step = _iterator()).done;) {var formatStringPart = _step.value;
+      categoryString += formatStringPart;
+      contentString += formatStringPart;
+
+      if (substitutionIndex < substitutionCount) {
+        if (substitutionIndex < substitutions.length) {
+
+
+
+          var substitution =
+          typeof substitutions[substitutionIndex] === 'string' ?
+          substitutions[substitutionIndex] :
+          (0, _stringifySafe.default)(substitutions[substitutionIndex]);
+          substitutionOffsets.push({
+            length: substitution.length,
+            offset: contentString.length });
+
+
+          categoryString += SUBSTITUTION;
+          contentString += substitution;
+        } else {
+          substitutionOffsets.push({
+            length: 2,
+            offset: contentString.length });
+
+
+          categoryString += '%s';
+          contentString += '%s';
+        }
+
+        substitutionIndex++;
+      }
+    }
+
+    categoryParts.push(categoryString);
+    contentParts.push(contentString);
+  }
+
+  var remainingArgs = remaining.map(function (arg) {
+
+
+
+    return typeof arg === 'string' ? arg : (0, _stringifySafe.default)(arg);
+  });
+  categoryParts.push.apply(categoryParts, (0, _toConsumableArray2.default)(remainingArgs));
+  contentParts.push.apply(contentParts, (0, _toConsumableArray2.default)(remainingArgs));
+
+  return {
+    category: categoryParts.join(' '),
+    message: {
+      content: contentParts.join(' '),
+      substitutions: substitutionOffsets } };
+
+
+}
+
+function parseComponentStack(message) {
+  return message.
+  split(/\n {4}in /g).
+  map(function (s) {
+    if (!s) {
+      return null;
+    }
+    var match = s.match(/(.*) \(at (.*\.js):([\d]+)\)/);
+    if (!match) {
+      return null;
+    }var _match$slice =
+
+    match.slice(1),_match$slice2 = (0, _slicedToArray2.default)(_match$slice, 3),content = _match$slice2[0],fileName = _match$slice2[1],row = _match$slice2[2];
+    return {
+      content: content,
+      fileName: fileName,
+      location: { column: -1, row: parseInt(row, 10) } };
+
+  }).
+  filter(Boolean);
+}
+
+function parseLogBoxException(
+error)
+{
+  var message =
+  error.originalMessage != null ? error.originalMessage : 'Unknown';
+
+  var babelTransformError = message.match(BABEL_TRANSFORM_ERROR_FORMAT);
+  if (babelTransformError) {var _babelTransformError$ =
+
+
+
+
+
+
+
+    babelTransformError.slice(1),_babelTransformError$2 = (0, _slicedToArray2.default)(_babelTransformError$, 5),fileName = _babelTransformError$2[0],content = _babelTransformError$2[1],row = _babelTransformError$2[2],column = _babelTransformError$2[3],codeFrame = _babelTransformError$2[4];
+
+    return {
+      level: 'syntax',
+      stack: [],
+      isComponentError: false,
+      componentStack: [],
+      codeFrame: {
+        fileName: fileName,
+        location: {
+          row: parseInt(row, 10),
+          column: parseInt(column, 10) },
+
+        content: codeFrame },
+
+      message: {
+        content: content,
+        substitutions: [] },
+
+      category: fileName + "-" + row + "-" + column };
+
+  }
+
+  var babelCodeFrameError = message.match(BABEL_CODE_FRAME_ERROR_FORMAT);
+
+  if (babelCodeFrameError) {var _babelCodeFrameError$ =
+
+    babelCodeFrameError.slice(1),_babelCodeFrameError$2 = (0, _slicedToArray2.default)(_babelCodeFrameError$, 3),_fileName = _babelCodeFrameError$2[0],_content = _babelCodeFrameError$2[1],_codeFrame = _babelCodeFrameError$2[2];
+    return {
+      level: 'syntax',
+      stack: [],
+      isComponentError: false,
+      componentStack: [],
+      codeFrame: {
+        fileName: _fileName,
+        location: null,
+        content: _codeFrame },
+
+      message: {
+        content: _content,
+        substitutions: [] },
+
+      category: _fileName + "-" + 1 + "-" + 1 };
+
+  }
+
+  var level = message.match(/^TransformError /) ?
+  'syntax' :
+  error.isFatal || error.isComponentError ?
+  'fatal' :
+  'error';
+
+  return _objectSpread({
+    level: level,
+    stack: error.stack,
+    isComponentError: error.isComponentError,
+    componentStack:
+    error.componentStack != null ?
+    parseComponentStack(error.componentStack) :
+    [] },
+  parseCategory([message]));
+
+}
+
+function parseLogBoxLog(
+args)
+
+
+
+
+{
+  var message = args[0];
+  var argsWithoutComponentStack = [];
+  var componentStack = [];
+
+
+  if (
+  typeof message === 'string' &&
+  message.slice(-2) === '%s' &&
+  args.length > 0)
+  {
+    var lastArg = args[args.length - 1];
+
+    if (typeof lastArg === 'string' && /\s{4}in/.test(lastArg)) {
+      argsWithoutComponentStack = args.slice(0, -1);
+      argsWithoutComponentStack[0] = message.slice(0, -2);
+      componentStack = parseComponentStack(lastArg);
+    }
+  }
+
+  if (componentStack.length === 0) {
+
+    for (var _iterator2 = _createForOfIteratorHelperLoose(args), _step2; !(_step2 = _iterator2()).done;) {var arg = _step2.value;
+      if (typeof arg === 'string' && /^\n {4}in/.exec(arg)) {
+        componentStack = parseComponentStack(arg);
+      } else {
+        argsWithoutComponentStack.push(arg);
+      }
+    }
+  }
+
+  return _objectSpread(_objectSpread({},
+  parseCategory(argsWithoutComponentStack)), {}, {
+    componentStack: componentStack });
+
+}

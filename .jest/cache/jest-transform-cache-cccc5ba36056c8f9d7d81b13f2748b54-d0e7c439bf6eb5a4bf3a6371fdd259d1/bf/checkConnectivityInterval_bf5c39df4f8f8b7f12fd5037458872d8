@@ -1,0 +1,399 @@
+8acc01f87d37f54384cbe6c4fd4454da
+/* istanbul ignore next */
+var cov_1b2m5pns6u = function () {
+  var path = "/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/checkConnectivityInterval.ts";
+  var hash = "a84d996cf101ab9a4b3db5f4d79dca06757f5bdb";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/checkConnectivityInterval.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 3,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 4,
+          column: 0
+        },
+        end: {
+          line: 4,
+          column: 34
+        }
+      },
+      "2": {
+        start: {
+          line: 5,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 22
+        }
+      },
+      "3": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 6,
+          column: 22
+        }
+      },
+      "4": {
+        start: {
+          line: 7,
+          column: 15
+        },
+        end: {
+          line: 7,
+          column: 19
+        }
+      },
+      "5": {
+        start: {
+          line: 10,
+          column: 2
+        },
+        end: {
+          line: 10,
+          column: 18
+        }
+      },
+      "6": {
+        start: {
+          line: 14,
+          column: 2
+        },
+        end: {
+          line: 16,
+          column: 3
+        }
+      },
+      "7": {
+        start: {
+          line: 15,
+          column: 4
+        },
+        end: {
+          line: 15,
+          column: 39
+        }
+      },
+      "8": {
+        start: {
+          line: 20,
+          column: 2
+        },
+        end: {
+          line: 23,
+          column: 3
+        }
+      },
+      "9": {
+        start: {
+          line: 21,
+          column: 4
+        },
+        end: {
+          line: 21,
+          column: 28
+        }
+      },
+      "10": {
+        start: {
+          line: 22,
+          column: 4
+        },
+        end: {
+          line: 22,
+          column: 20
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "getInterval",
+        decl: {
+          start: {
+            line: 9,
+            column: 9
+          },
+          end: {
+            line: 9,
+            column: 20
+          }
+        },
+        loc: {
+          start: {
+            line: 9,
+            column: 23
+          },
+          end: {
+            line: 11,
+            column: 1
+          }
+        },
+        line: 9
+      },
+      "1": {
+        name: "setup",
+        decl: {
+          start: {
+            line: 13,
+            column: 9
+          },
+          end: {
+            line: 13,
+            column: 14
+          }
+        },
+        loc: {
+          start: {
+            line: 13,
+            column: 27
+          },
+          end: {
+            line: 17,
+            column: 1
+          }
+        },
+        line: 13
+      },
+      "2": {
+        name: "clear",
+        decl: {
+          start: {
+            line: 19,
+            column: 9
+          },
+          end: {
+            line: 19,
+            column: 14
+          }
+        },
+        loc: {
+          start: {
+            line: 19,
+            column: 17
+          },
+          end: {
+            line: 24,
+            column: 1
+          }
+        },
+        line: 19
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 14,
+            column: 2
+          },
+          end: {
+            line: 16,
+            column: 3
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 14,
+            column: 2
+          },
+          end: {
+            line: 16,
+            column: 3
+          }
+        }, {
+          start: {
+            line: 14,
+            column: 2
+          },
+          end: {
+            line: 16,
+            column: 3
+          }
+        }],
+        line: 14
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 14,
+            column: 6
+          },
+          end: {
+            line: 14,
+            column: 24
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 14,
+            column: 6
+          },
+          end: {
+            line: 14,
+            column: 11
+          }
+        }, {
+          start: {
+            line: 14,
+            column: 15
+          },
+          end: {
+            line: 14,
+            column: 24
+          }
+        }],
+        line: 14
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 20,
+            column: 2
+          },
+          end: {
+            line: 23,
+            column: 3
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 20,
+            column: 2
+          },
+          end: {
+            line: 23,
+            column: 3
+          }
+        }, {
+          start: {
+            line: 20,
+            column: 2
+          },
+          end: {
+            line: 23,
+            column: 3
+          }
+        }],
+        line: 20
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0]
+    },
+    _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
+    hash: "a84d996cf101ab9a4b3db5f4d79dca06757f5bdb"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (coverage[path] && coverage[path].hash === hash) {
+    return coverage[path];
+  }
+
+  return coverage[path] = coverageData;
+}();
+
+cov_1b2m5pns6u.s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/* istanbul ignore next */
+cov_1b2m5pns6u.s[1]++;
+exports.getInterval = getInterval;
+
+/* istanbul ignore next */
+cov_1b2m5pns6u.s[2]++;
+exports.setup = setup;
+
+/* istanbul ignore next */
+cov_1b2m5pns6u.s[3]++;
+exports.clear = clear;
+var interval =
+/* istanbul ignore next */
+(cov_1b2m5pns6u.s[4]++, null);
+
+function getInterval() {
+  /* istanbul ignore next */
+  cov_1b2m5pns6u.f[0]++;
+  cov_1b2m5pns6u.s[5]++;
+  return interval;
+}
+
+function setup(checkFn, t) {
+  /* istanbul ignore next */
+  cov_1b2m5pns6u.f[1]++;
+  cov_1b2m5pns6u.s[6]++;
+
+  if (
+  /* istanbul ignore next */
+  (cov_1b2m5pns6u.b[1][0]++, t > 0) &&
+  /* istanbul ignore next */
+  (cov_1b2m5pns6u.b[1][1]++, !interval)) {
+    /* istanbul ignore next */
+    cov_1b2m5pns6u.b[0][0]++;
+    cov_1b2m5pns6u.s[7]++;
+    interval = setInterval(checkFn, t);
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1b2m5pns6u.b[0][1]++;
+  }
+}
+
+function clear() {
+  /* istanbul ignore next */
+  cov_1b2m5pns6u.f[2]++;
+  cov_1b2m5pns6u.s[8]++;
+
+  if (interval) {
+    /* istanbul ignore next */
+    cov_1b2m5pns6u.b[2][0]++;
+    cov_1b2m5pns6u.s[9]++;
+    clearInterval(interval);
+
+    /* istanbul ignore next */
+    cov_1b2m5pns6u.s[10]++;
+    interval = null;
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1b2m5pns6u.b[2][1]++;
+  }
+}

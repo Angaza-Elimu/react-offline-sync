@@ -1,0 +1,241 @@
+4c6e0de8fb6b91ef07c719e33345efe5
+jest.mock('../utils/checkInternetAccess');
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _netinfo = _interopRequireDefault(require("@react-native-community/netinfo"));
+
+var _utils = require("ts-jest/utils");
+
+var _checkInternetConnection = _interopRequireDefault(require("../utils/checkInternetConnection"));
+
+var _checkInternetAccess = _interopRequireDefault(require("../utils/checkInternetAccess"));
+
+var _constants = require("../utils/constants");
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+(0, _utils.mocked)(_checkInternetAccess.default).mockResolvedValue(true);
+var fetch = _netinfo.default.fetch;
+describe('checkInternetConnection', function () {
+  afterEach(function () {
+    (0, _utils.mocked)(_checkInternetAccess.default).mockClear();
+  });
+  describe('shouldPing = true', function () {
+    it("calls checkInternetAccess and resolves the promise with its returned value", function () {
+      return __awaiter(void 0, void 0, void 0, function () {
+        var isConnected;
+        return __generator(this, function (_a) {
+          switch (_a.label) {
+            case 0:
+              return [4, (0, _checkInternetConnection.default)('foo.com', 3000, true)];
+
+            case 1:
+              isConnected = _a.sent();
+              expect(_checkInternetAccess.default).toHaveBeenCalledWith({
+                method: _constants.DEFAULT_HTTP_METHOD,
+                timeout: 3000,
+                url: 'foo.com',
+                customHeaders: _constants.DEFAULT_CUSTOM_HEADERS
+              });
+              expect(isConnected).toBe(true);
+              return [2];
+          }
+        });
+      });
+    });
+  });
+  describe('shouldPing = false', function () {
+    it("does NOT call checkInternetAccess and directly resolves the promise with a boolean", function () {
+      return __awaiter(void 0, void 0, void 0, function () {
+        var isConnected;
+        return __generator(this, function (_a) {
+          switch (_a.label) {
+            case 0:
+              fetch.mockImplementationOnce(function () {
+                return Promise.resolve({
+                  isConnected: false
+                });
+              });
+              return [4, (0, _checkInternetConnection.default)('foo.com', 3000, false)];
+
+            case 1:
+              isConnected = _a.sent();
+              expect(_checkInternetAccess.default).not.toHaveBeenCalled();
+              expect(isConnected).toBe(false);
+              return [2];
+          }
+        });
+      });
+    });
+  });
+  it('default parameters', function () {
+    return __awaiter(void 0, void 0, void 0, function () {
+      var isConnected;
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            fetch.mockImplementationOnce(function () {
+              return Promise.resolve({
+                isConnected: true
+              });
+            });
+            return [4, (0, _checkInternetConnection.default)()];
+
+          case 1:
+            isConnected = _a.sent();
+            expect(_checkInternetAccess.default).toHaveBeenCalledWith({
+              method: _constants.DEFAULT_HTTP_METHOD,
+              timeout: _constants.DEFAULT_TIMEOUT,
+              url: _constants.DEFAULT_PING_SERVER_URL,
+              customHeaders: _constants.DEFAULT_CUSTOM_HEADERS
+            });
+            expect(isConnected).toBe(true);
+            return [2];
+        }
+      });
+    });
+  });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9EZXZBQy9EZXNrdG9wL0FuZ2F6YS9yZWFjdC1vZmZsaW5lLXN5bmMvc3JjL3Rlc3QvY2hlY2tJbnRlcm5ldENvbm5lY3Rpb24udGVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFXQSxJQUFJLENBQUMsSUFBTCxDQUFVLGtDQUFWOzs7O0FBWEE7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBQ0E7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFTQSxtQkFBTyw0QkFBUCxFQUE0QixpQkFBNUIsQ0FBOEMsSUFBOUM7QUFFQSxJQUFNLEtBQUssR0FBRyxpQkFBUSxLQUF0QjtBQUVBLFFBQVEsQ0FBQyx5QkFBRCxFQUE0QixZQUFBO0FBQ2xDLEVBQUEsU0FBUyxDQUFDLFlBQUE7QUFDUix1QkFBTyw0QkFBUCxFQUE0QixTQUE1QjtBQUNELEdBRlEsQ0FBVDtBQUdBLEVBQUEsUUFBUSxDQUFDLG1CQUFELEVBQXNCLFlBQUE7QUFDNUIsSUFBQSxFQUFFLENBQUMsNEVBQUQsRUFBK0UsWUFBQTtBQUFBLGFBQUEsU0FBQSxDQUFBLEtBQUEsQ0FBQSxFQUFBLEtBQUEsQ0FBQSxFQUFBLEtBQUEsQ0FBQSxFQUFBLFlBQUE7Ozs7O0FBQzNELHFCQUFBLENBQUEsQ0FBQSxFQUFNLHNDQUF3QixTQUF4QixFQUFtQyxJQUFuQyxFQUF5QyxJQUF6QyxDQUFOLENBQUE7OztBQUFkLGNBQUEsV0FBVyxHQUFHLEVBQUEsQ0FBQSxJQUFBLEVBQWQ7QUFDTixjQUFBLE1BQU0sQ0FBQyw0QkFBRCxDQUFOLENBQTRCLG9CQUE1QixDQUFpRDtBQUMvQyxnQkFBQSxNQUFNLEVBQUUsOEJBRHVDO0FBRS9DLGdCQUFBLE9BQU8sRUFBRSxJQUZzQztBQUcvQyxnQkFBQSxHQUFHLEVBQUUsU0FIMEM7QUFJL0MsZ0JBQUEsYUFBYSxFQUFFO0FBSmdDLGVBQWpEO0FBTUEsY0FBQSxNQUFNLENBQUMsV0FBRCxDQUFOLENBQW9CLElBQXBCLENBQXlCLElBQXpCOzs7O09BUitFLENBQUE7QUFTaEYsS0FUQyxDQUFGO0FBVUQsR0FYTyxDQUFSO0FBYUEsRUFBQSxRQUFRLENBQUMsb0JBQUQsRUFBdUIsWUFBQTtBQUM3QixJQUFBLEVBQUUsQ0FBQyxvRkFBRCxFQUF1RixZQUFBO0FBQUEsYUFBQSxTQUFBLENBQUEsS0FBQSxDQUFBLEVBQUEsS0FBQSxDQUFBLEVBQUEsS0FBQSxDQUFBLEVBQUEsWUFBQTs7Ozs7QUFDdkYsY0FBQSxLQUFLLENBQUMsc0JBQU4sQ0FBNkIsWUFBQTtBQUMzQix1QkFBQSxPQUFPLENBQUMsT0FBUixDQUFnQjtBQUFFLGtCQUFBLFdBQVcsRUFBRTtBQUFmLGlCQUFoQixDQUFBO0FBQXVDLGVBRHpDO0FBR29CLHFCQUFBLENBQUEsQ0FBQSxFQUFNLHNDQUF3QixTQUF4QixFQUFtQyxJQUFuQyxFQUF5QyxLQUF6QyxDQUFOLENBQUE7OztBQUFkLGNBQUEsV0FBVyxHQUFHLEVBQUEsQ0FBQSxJQUFBLEVBQWQ7QUFDTixjQUFBLE1BQU0sQ0FBQyw0QkFBRCxDQUFOLENBQTRCLEdBQTVCLENBQWdDLGdCQUFoQztBQUNBLGNBQUEsTUFBTSxDQUFDLFdBQUQsQ0FBTixDQUFvQixJQUFwQixDQUF5QixLQUF6Qjs7OztPQU51RixDQUFBO0FBT3hGLEtBUEMsQ0FBRjtBQVFELEdBVE8sQ0FBUjtBQVdBLEVBQUEsRUFBRSxDQUFDLG9CQUFELEVBQXVCLFlBQUE7QUFBQSxXQUFBLFNBQUEsQ0FBQSxLQUFBLENBQUEsRUFBQSxLQUFBLENBQUEsRUFBQSxLQUFBLENBQUEsRUFBQSxZQUFBOzs7OztBQUN2QixZQUFBLEtBQUssQ0FBQyxzQkFBTixDQUE2QixZQUFBO0FBQU0scUJBQUEsT0FBTyxDQUFDLE9BQVIsQ0FBZ0I7QUFBRSxnQkFBQSxXQUFXLEVBQTdCO0FBQWdCLGVBQWhCLENBQUE7QUFBc0MsYUFBekU7QUFDb0IsbUJBQUEsQ0FBQSxDQUFBLEVBQU0sdUNBQU4sQ0FBQTs7O0FBQWQsWUFBQSxXQUFXLEdBQUcsRUFBQSxDQUFBLElBQUEsRUFBZDtBQUNOLFlBQUEsTUFBTSxDQUFDLDRCQUFELENBQU4sQ0FBNEIsb0JBQTVCLENBQWlEO0FBQy9DLGNBQUEsTUFBTSxFQUFFLDhCQUR1QztBQUUvQyxjQUFBLE9BQU8sRUFBRSwwQkFGc0M7QUFHL0MsY0FBQSxHQUFHLEVBQUUsa0NBSDBDO0FBSS9DLGNBQUEsYUFBYSxFQUFFO0FBSmdDLGFBQWpEO0FBTUEsWUFBQSxNQUFNLENBQUMsV0FBRCxDQUFOLENBQW9CLElBQXBCLENBQXlCLElBQXpCOzs7O0tBVHVCLENBQUE7QUFVeEIsR0FWQyxDQUFGO0FBV0QsQ0F2Q08sQ0FBUiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBOZXRJbmZvIGZyb20gJ0ByZWFjdC1uYXRpdmUtY29tbXVuaXR5L25ldGluZm8nO1xuaW1wb3J0IHsgbW9ja2VkIH0gZnJvbSAndHMtamVzdC91dGlscyc7XG5pbXBvcnQgY2hlY2tJbnRlcm5ldENvbm5lY3Rpb24gZnJvbSAnLi4vc3JjL3V0aWxzL2NoZWNrSW50ZXJuZXRDb25uZWN0aW9uJztcbmltcG9ydCBjaGVja0ludGVybmV0QWNjZXNzIGZyb20gJy4uL3NyYy91dGlscy9jaGVja0ludGVybmV0QWNjZXNzJztcbmltcG9ydCB7XG4gIERFRkFVTFRfUElOR19TRVJWRVJfVVJMLFxuICBERUZBVUxUX1RJTUVPVVQsXG4gIERFRkFVTFRfSFRUUF9NRVRIT0QsXG4gIERFRkFVTFRfQ1VTVE9NX0hFQURFUlMsXG59IGZyb20gJy4uL3NyYy91dGlscy9jb25zdGFudHMnO1xuXG5qZXN0Lm1vY2soJy4uL3NyYy91dGlscy9jaGVja0ludGVybmV0QWNjZXNzJyk7XG5cbm1vY2tlZChjaGVja0ludGVybmV0QWNjZXNzKS5tb2NrUmVzb2x2ZWRWYWx1ZSh0cnVlKTtcblxuY29uc3QgZmV0Y2ggPSBOZXRJbmZvLmZldGNoIGFzIGplc3QuTW9jaztcblxuZGVzY3JpYmUoJ2NoZWNrSW50ZXJuZXRDb25uZWN0aW9uJywgKCkgPT4ge1xuICBhZnRlckVhY2goKCkgPT4ge1xuICAgIG1vY2tlZChjaGVja0ludGVybmV0QWNjZXNzKS5tb2NrQ2xlYXIoKTtcbiAgfSk7XG4gIGRlc2NyaWJlKCdzaG91bGRQaW5nID0gdHJ1ZScsICgpID0+IHtcbiAgICBpdChgY2FsbHMgY2hlY2tJbnRlcm5ldEFjY2VzcyBhbmQgcmVzb2x2ZXMgdGhlIHByb21pc2Ugd2l0aCBpdHMgcmV0dXJuZWQgdmFsdWVgLCBhc3luYyAoKSA9PiB7XG4gICAgICBjb25zdCBpc0Nvbm5lY3RlZCA9IGF3YWl0IGNoZWNrSW50ZXJuZXRDb25uZWN0aW9uKCdmb28uY29tJywgMzAwMCwgdHJ1ZSk7XG4gICAgICBleHBlY3QoY2hlY2tJbnRlcm5ldEFjY2VzcykudG9IYXZlQmVlbkNhbGxlZFdpdGgoe1xuICAgICAgICBtZXRob2Q6IERFRkFVTFRfSFRUUF9NRVRIT0QsXG4gICAgICAgIHRpbWVvdXQ6IDMwMDAsXG4gICAgICAgIHVybDogJ2Zvby5jb20nLFxuICAgICAgICBjdXN0b21IZWFkZXJzOiBERUZBVUxUX0NVU1RPTV9IRUFERVJTLFxuICAgICAgfSk7XG4gICAgICBleHBlY3QoaXNDb25uZWN0ZWQpLnRvQmUodHJ1ZSk7XG4gICAgfSk7XG4gIH0pO1xuXG4gIGRlc2NyaWJlKCdzaG91bGRQaW5nID0gZmFsc2UnLCAoKSA9PiB7XG4gICAgaXQoYGRvZXMgTk9UIGNhbGwgY2hlY2tJbnRlcm5ldEFjY2VzcyBhbmQgZGlyZWN0bHkgcmVzb2x2ZXMgdGhlIHByb21pc2Ugd2l0aCBhIGJvb2xlYW5gLCBhc3luYyAoKSA9PiB7XG4gICAgICBmZXRjaC5tb2NrSW1wbGVtZW50YXRpb25PbmNlKCgpID0+XG4gICAgICAgIFByb21pc2UucmVzb2x2ZSh7IGlzQ29ubmVjdGVkOiBmYWxzZSB9KSxcbiAgICAgICk7XG4gICAgICBjb25zdCBpc0Nvbm5lY3RlZCA9IGF3YWl0IGNoZWNrSW50ZXJuZXRDb25uZWN0aW9uKCdmb28uY29tJywgMzAwMCwgZmFsc2UpO1xuICAgICAgZXhwZWN0KGNoZWNrSW50ZXJuZXRBY2Nlc3MpLm5vdC50b0hhdmVCZWVuQ2FsbGVkKCk7XG4gICAgICBleHBlY3QoaXNDb25uZWN0ZWQpLnRvQmUoZmFsc2UpO1xuICAgIH0pO1xuICB9KTtcblxuICBpdCgnZGVmYXVsdCBwYXJhbWV0ZXJzJywgYXN5bmMgKCkgPT4ge1xuICAgIGZldGNoLm1vY2tJbXBsZW1lbnRhdGlvbk9uY2UoKCkgPT4gUHJvbWlzZS5yZXNvbHZlKHsgaXNDb25uZWN0ZWQ6IHRydWUgfSkpO1xuICAgIGNvbnN0IGlzQ29ubmVjdGVkID0gYXdhaXQgY2hlY2tJbnRlcm5ldENvbm5lY3Rpb24oKTtcbiAgICBleHBlY3QoY2hlY2tJbnRlcm5ldEFjY2VzcykudG9IYXZlQmVlbkNhbGxlZFdpdGgoe1xuICAgICAgbWV0aG9kOiBERUZBVUxUX0hUVFBfTUVUSE9ELFxuICAgICAgdGltZW91dDogREVGQVVMVF9USU1FT1VULFxuICAgICAgdXJsOiBERUZBVUxUX1BJTkdfU0VSVkVSX1VSTCxcbiAgICAgIGN1c3RvbUhlYWRlcnM6IERFRkFVTFRfQ1VTVE9NX0hFQURFUlMsXG4gICAgfSk7XG4gICAgZXhwZWN0KGlzQ29ubmVjdGVkKS50b0JlKHRydWUpO1xuICB9KTtcbn0pO1xuIl19

@@ -1,0 +1,217 @@
+0a78f74c2a98414e02234566151c156e
+
+
+
+
+
+
+
+
+
+
+'use strict';var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));var _wrapNativeSuper2 = _interopRequireDefault(require("@babel/runtime/helpers/wrapNativeSuper"));
+
+
+var LogBoxData = _interopRequireWildcard(require("../LogBox/Data/LogBoxData"));function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {(0, _defineProperty2.default)(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _createSuper(Derived) {var hasNativeReflectConstruct = _isNativeReflectConstruct();return function _createSuperInternal() {var Super = (0, _getPrototypeOf2.default)(Derived),result;if (hasNativeReflectConstruct) {var NewTarget = (0, _getPrototypeOf2.default)(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return (0, _possibleConstructorReturn2.default)(this, result);};}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}var
+
+
+SyntheticError = function (_Error) {(0, _inherits2.default)(SyntheticError, _Error);var _super = _createSuper(SyntheticError);function SyntheticError() {var _this;(0, _classCallCheck2.default)(this, SyntheticError);for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}_this = _super.call.apply(_super, [this].concat(args));_this.
+    name = '';return _this;}return SyntheticError;}((0, _wrapNativeSuper2.default)(Error));
+
+
+
+
+var userExceptionDecorator;
+var inUserExceptionDecorator = false;
+
+
+
+
+
+
+function unstable_setExceptionDecorator(
+exceptionDecorator)
+{
+  userExceptionDecorator = exceptionDecorator;
+}
+
+function preprocessException(data) {
+  if (userExceptionDecorator && !inUserExceptionDecorator) {
+    inUserExceptionDecorator = true;
+    try {
+      return userExceptionDecorator(data);
+    } catch (_unused) {
+
+    } finally {
+      inUserExceptionDecorator = false;
+    }
+  }
+  return data;
+}
+
+
+
+
+var exceptionID = 0;
+function reportException(e, isFatal) {
+  var NativeExceptionsManager = require('./NativeExceptionsManager').default;
+  if (NativeExceptionsManager) {
+    var parseErrorStack = require('./Devtools/parseErrorStack');
+    var stack = parseErrorStack(e);
+    var currentExceptionID = ++exceptionID;
+    var originalMessage = e.message || '';
+    var message = originalMessage;
+    if (e.componentStack != null) {
+      message += "\n\nThis error is located at:" + e.componentStack;
+    }
+    var namePrefix = e.name == null || e.name === '' ? '' : e.name + ": ";
+    var isFromConsoleError = e.name === 'console.error';
+
+    if (!message.startsWith(namePrefix)) {
+      message = namePrefix + message;
+    }
+
+
+    if (!isFromConsoleError) {
+      if (console._errorOriginal) {
+        console._errorOriginal(message);
+      } else {
+        console.error(message);
+      }
+    }
+
+    message =
+    e.jsEngine == null ? message : message + ", js engine: " + e.jsEngine;
+
+    var isHandledByLogBox =
+    e.forceRedbox !== true && global.__unstable_isLogBoxEnabled === true;
+
+    var data = preprocessException({
+      message: message,
+      originalMessage: message === originalMessage ? null : originalMessage,
+      name: e.name == null || e.name === '' ? null : e.name,
+      componentStack:
+      typeof e.componentStack === 'string' ? e.componentStack : null,
+      stack: stack,
+      id: currentExceptionID,
+      isFatal: isFatal,
+      extraData: {
+        jsEngine: e.jsEngine,
+        rawStack: e.stack,
+
+
+
+        suppressRedBox: isHandledByLogBox } });
+
+
+
+    if (isHandledByLogBox) {
+      LogBoxData.addException(_objectSpread(_objectSpread({},
+      data), {}, {
+        isComponentError: !!e.isComponentError }));
+
+    }
+
+    NativeExceptionsManager.reportException(data);
+
+    if (__DEV__) {
+      if (e.preventSymbolication === true) {
+        return;
+      }
+      var symbolicateStackTrace = require('./Devtools/symbolicateStackTrace');
+      symbolicateStackTrace(stack).
+      then(function (_ref) {var prettyStack = _ref.stack;
+        if (prettyStack) {
+          NativeExceptionsManager.updateExceptionMessage(
+          data.message,
+          prettyStack,
+          currentExceptionID);
+
+        } else {
+          throw new Error('The stack is null');
+        }
+      }).
+      catch(function (error) {
+        console.log('Unable to symbolicate stack trace: ' + error.message);
+      });
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function handleException(e, isFatal) {
+  var error;
+  if (e instanceof Error) {
+    error = e;
+  } else {
+
+
+
+
+    error = new SyntheticError(e);
+  }
+  reportException(error, isFatal);
+}
+
+function reactConsoleErrorHandler() {
+  if (!console.reportErrorsAsExceptions) {
+    console._errorOriginal.apply(console, arguments);
+    return;
+  }
+
+  if (arguments[0] && arguments[0].stack) {
+
+    reportException(arguments[0], false);
+  } else {
+    console._errorOriginal.apply(console, arguments);
+    var stringifySafe = require('../Utilities/stringifySafe');
+    var str = Array.prototype.map.
+    call(arguments, function (value) {return (
+        typeof value === 'string' ? value : stringifySafe(value));}).
+
+    join(' ');
+
+    if (str.slice(0, 9) === 'Warning: ') {
+
+
+
+      return;
+    }
+    var _error = new SyntheticError(str);
+    _error.name = 'console.error';
+    reportException(_error, false);
+  }
+}
+
+
+
+
+
+function installConsoleErrorReporter() {
+
+  if (console._errorOriginal) {
+    return;
+  }
+
+  console._errorOriginal = console.error.bind(console);
+  console.error = reactConsoleErrorHandler;
+  if (console.reportErrorsAsExceptions === undefined) {
+
+
+    console.reportErrorsAsExceptions = true;
+  }
+}
+
+module.exports = {
+  handleException: handleException,
+  installConsoleErrorReporter: installConsoleErrorReporter,
+  SyntheticError: SyntheticError,
+  unstable_setExceptionDecorator: unstable_setExceptionDecorator };
