@@ -1,9 +1,0 @@
-0264c4318376504465c41f14c1c58b75
-var _ = require(".");
-
-describe('ExampleComponent', function () {
-  it('is truthy', function () {
-    expect(_.ExampleComponent).toBeTruthy();
-  });
-});
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9EZXZBQy9EZXNrdG9wL0FuZ2F6YS9yZWFjdC1vZmZsaW5lLXN5bmMvc3JjL2luZGV4LnRlc3QudHN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBLFFBQVEsQ0FBQyxrQkFBRCxFQUFxQixZQUFBO0FBQzNCLEVBQUEsRUFBRSxDQUFDLFdBQUQsRUFBYyxZQUFBO0FBQ2QsSUFBQSxNQUFNLENBQUMsa0JBQUQsQ0FBTixDQUF5QixVQUF6QjtBQUNELEdBRkMsQ0FBRjtBQUdELENBSk8sQ0FBUiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEV4YW1wbGVDb21wb25lbnQgfSBmcm9tICcuJ1xuXG5kZXNjcmliZSgnRXhhbXBsZUNvbXBvbmVudCcsICgpID0+IHtcbiAgaXQoJ2lzIHRydXRoeScsICgpID0+IHtcbiAgICBleHBlY3QoRXhhbXBsZUNvbXBvbmVudCkudG9CZVRydXRoeSgpXG4gIH0pXG59KVxuIl19

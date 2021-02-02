@@ -1,2 +1,0 @@
-0a9dce189b29ffbdc3b9356c9e1e43fe
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var actMock = function actMock(callback) {callback();};var _default = require("react-test-renderer").act || actMock;exports.default = _default;

@@ -1,2 +1,0 @@
-c8286cd77d982809e9898732e4df453d
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = debugShallow;var React = require("@babel/runtime/helpers/interopRequireWildcard")(require("react"));var _format = require("@babel/runtime/helpers/interopRequireDefault")(require("./format"));function debugShallow(instance, message) {var _shallowInternal = (0, require("../shallow").shallowInternal)(instance),output = _shallowInternal.output;if (message) {console.log(message + "\n\n", (0, _format.default)(output));} else {console.log((0, _format.default)(output));}}

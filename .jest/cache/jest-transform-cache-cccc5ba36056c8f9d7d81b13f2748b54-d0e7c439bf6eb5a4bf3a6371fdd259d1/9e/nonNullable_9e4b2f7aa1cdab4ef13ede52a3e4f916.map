@@ -1,1 +1,0 @@
-{"version":3,"sources":["/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/nonNullable.ts"],"names":[],"mappings":";;;;;AACc,SAAU,WAAV,CAAyB,KAAzB,EAAiC;AAC7C,SAAO,CAAC,CAAC,KAAT;AACD","sourcesContent":["// https://stackoverflow.com/a/58110124/2615091\nexport default function nonNullable<T>(value: T): value is NonNullable<T> {\n  return !!value;\n}\n"]}

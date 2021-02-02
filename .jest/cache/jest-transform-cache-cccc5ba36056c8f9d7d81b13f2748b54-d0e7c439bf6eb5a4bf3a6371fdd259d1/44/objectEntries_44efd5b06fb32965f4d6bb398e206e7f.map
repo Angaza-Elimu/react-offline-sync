@@ -1,1 +1,0 @@
-{"version":3,"sources":["/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/objectEntries.ts"],"names":[],"mappings":";;;;AAAA,IAAM,OAAO,GAAG,MAAM,CAAC,OAAvB;eAIe,O","sourcesContent":["const entries = Object.entries as <T>(\n  o: T,\n) => [Extract<keyof T, string>, T[keyof T]][];\n\nexport default entries;\n"]}
