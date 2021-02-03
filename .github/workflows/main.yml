@@ -25,7 +25,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
+      #Install NPM modules
+      - name: NPM Install
+        run: npm install
+         
       # Runs tests and coverage
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.4
