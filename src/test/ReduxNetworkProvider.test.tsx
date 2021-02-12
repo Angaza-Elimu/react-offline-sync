@@ -6,8 +6,7 @@ import {
 } from 'react-native-testing-library';
 import { shallow } from 'enzyme';
 import {
-  ReduxNetworkProvider,
-  mapStateToProps,
+  ReduxNetworkProvider
 } from '../components/ReduxNetworkProvider';
 import { connectionChange } from '../redux/actionCreators';
 
@@ -71,17 +70,4 @@ describe('ReduxNetworkProvider', () => {
   });
 });
 
-describe('mapStateToProps', () => {
-  it('maps isConnected and actionQueue state to props', () => {
-    const expected = { isConnected: false };
-    const state = {
-      network: {
-        actionQueue: [],
-        isQueuePaused: false,
-        ...expected,
-      },
-    };
 
-    expect(mapStateToProps(state)).toEqual(expected);
-  });
-});

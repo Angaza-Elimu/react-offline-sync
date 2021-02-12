@@ -38,42 +38,42 @@ export class DatabaseInitialization {
       });
   }
 
+  public createTable(){
+
+  }
+
+  private  transformJsontoCreateStatement(tableDescriptions: any[]): any{
+    let statementsArray: string[] = [];
+    tableDescriptions.forEach(table => {
+      var createFieldString = "";
+      var element_fields: [] = table['fields'];
+      element_fields.forEach(field => {
+        createFieldString += `${field["field_name"]} ${field["field_description_sqlite"]},`
+      });
+      statementsArray.push(`CREATE TABLE IF NOT EXISTS ${table["table_name"]}(
+        ${createFieldString}
+      )`)
+    });
+
+    console.log(statementsArray);
+    return statementsArray;
+    
+  }
+
+
   // Perform initial setup of the database tables
-  private createTables(transaction: SQLite.Transaction) {
+  public createTables(transaction: SQLite.Transaction, tableDescriptions: any[]) {
     // DANGER! For dev only
+   
     const dropAllTables = false;
     if (dropAllTables) {
       transaction.executeSql("DROP TABLE IF EXISTS List;");
       transaction.executeSql("DROP TABLE IF EXISTS ListItem;");
       transaction.executeSql("DROP TABLE IF EXISTS Version;");
     }
-
-    // List table
-    transaction.executeSql(`
-      CREATE TABLE IF NOT EXISTS List(
-        list_id INTEGER PRIMARY KEY NOT NULL,
-        title TEXT
-      );
-    `);
-
-    // ListItem table
-    transaction.executeSql(`
-      CREATE TABLE IF NOT EXISTS ListItem(
-        item_id INTEGER PRIMARY KEY NOT NULL,
-        list_id INTEGER,
-        text TEXT,
-        done INTEGER DEFAULT 0,
-        FOREIGN KEY ( list_id ) REFERENCES List ( list_id )
-      );
-    `);
-
-    // Version table
-    transaction.executeSql(`
-      CREATE TABLE IF NOT EXISTS Version(
-        version_id INTEGER PRIMARY KEY NOT NULL,
-        version INTEGER
-      );
-    `);
+    this.transformJsontoCreateStatement(tableDescriptions).forEach((statement: string) => {
+      transaction.executeSql(statement);
+    });
   }
 
   // Get the version of the database, as specified in the Version table
