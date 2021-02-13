@@ -11,6 +11,7 @@ export { default as createNetworkMiddleware } from './redux/createNetworkMiddlew
 export { default as networkSaga } from './redux/sagas';
 export { default as checkInternetConnection } from './utils/checkInternetConnection';
 
+export {default as databaseCreate } from './database/DatabaseInitialization';
 export const createReducer = _reducer;
 export const reducer = _reducer();
 

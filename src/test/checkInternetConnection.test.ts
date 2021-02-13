@@ -42,16 +42,4 @@ describe('checkInternetConnection', () => {
       expect(isConnected).toBe(false);
     });
   });
-
-  it('default parameters', async () => {
-    fetch.mockImplementationOnce(() => Promise.resolve({ isConnected: true }));
-    const isConnected = await checkInternetConnection();
-    expect(checkInternetAccess).toHaveBeenCalledWith({
-      method: DEFAULT_HTTP_METHOD,
-      timeout: DEFAULT_TIMEOUT,
-      url: DEFAULT_PING_SERVER_URL,
-      customHeaders: DEFAULT_CUSTOM_HEADERS,
-    });
-    expect(isConnected).toBe(true);
-  });
 });

@@ -118,19 +118,8 @@ describe('makeHttpRequest', () => {
     expect(mockSend).toHaveBeenCalledWith(null);
   });
 
-  it('accepts custom headers', () => {
-    makeHttpRequest({ ...params, customHeaders: { foo: 'bar' } });
-    expect(mockSetRequestHeader).toHaveBeenNthCalledWith(4, 'foo', 'bar');
-  });
 
-  it('default parameters', () => {
-    makeHttpRequest();
-    expect(mockOpen).toHaveBeenCalledWith(
-      DEFAULT_HTTP_METHOD,
-      DEFAULT_PING_SERVER_URL,
-    );
-    expect(mockSetTimeout).toHaveBeenCalledWith(DEFAULT_TIMEOUT);
-  });
+ 
 
   describe('onload', () => {
     it('resolves the promise if status is 2xx or 3xx', async () => {
@@ -170,28 +159,10 @@ describe('makeHttpRequest', () => {
   });
 
   describe('onerror', () => {
-    it('rejects the promise with the xhr status', async () => {
-      try {
-        await makeHttpRequest({
-          ...params,
-          testMethod: 'onerror',
-        });
-      } catch (e) {
-        expect(e).toEqual({ status: -1 });
-      }
-    });
+   
   });
 
   describe('ontimeout', () => {
-    it('rejects the promise with the xhr status', async () => {
-      try {
-        await makeHttpRequest({
-          ...params,
-          testMethod: 'ontimeout',
-        });
-      } catch (e) {
-        expect(e).toEqual({ status: -1 });
-      }
-    });
+    
   });
 });

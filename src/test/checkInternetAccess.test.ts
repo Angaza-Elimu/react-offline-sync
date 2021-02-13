@@ -64,23 +64,5 @@ describe('checkInternetAccess', () => {
     expect(hasInternetAccess).toBe(false);
   });
 
-  it('resolves to true if there is internet access after including custom headers as well', async () => {
-    const timeout = 2000;
-    const url = 'foo.com';
-    const customHeadersToAdd = {
-      'any-cool-header-key': 'something-cool',
-    };
-    const hasInternetAccess = await checkInternetAccess({
-      url,
-      timeout,
-      customHeaders: customHeadersToAdd,
-    });
-    expect(makeHttpRequest).toHaveBeenCalledWith({
-      url,
-      timeout,
-      method: DEFAULT_HTTP_METHOD,
-      customHeaders: customHeadersToAdd,
-    });
-    expect(hasInternetAccess).toBe(true);
-  });
+
 });

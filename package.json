@@ -1,12 +1,12 @@
 {
-  "name": "react-offline-sync",
-  "version": "1.0.0",
+  "name": "offline-sync-react",
+  "version": "1.0.1",
   "description": "A package that allows synchronizing of locally stored data on availability of a network connection",
-  "author": "Angaza-Elimu",
-  "license": "Apache 2.0",
+  "author": "angaza_elimu",
+  "license": "LGPL 3.0",
   "repository": "Angaza-Elimu/react-offline-sync",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
@@ -82,12 +82,21 @@
     "typescript": "3.7.5"
   },
   "dependencies": {
+    "@types/react-native-sqlite-storage": "^5.0.0",
     "lodash": "^4.17.11",
+    "react-native-sqlite-storage": "^5.0.0",
     "react-redux": "^7.0.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "jest": {
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
+  }
 }

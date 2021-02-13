@@ -9,8 +9,7 @@ import { AppState, AppStateStatus } from "react-native";
 
 export interface Database {
     // Create
-    createList(newListTitle: string): Promise<void>;
-    addListItem(text: string, list: List): Promise<void>;
+    createTable
     // Read
     getAllLists(): Promise<List[]>;
     getListItems(list: List, doneItemsLast: boolean): Promise<ListItem[]>;
@@ -19,6 +18,9 @@ export interface Database {
     // Delete
     deleteList(list: List): Promise<void>;
   }
+
+
+let databaseInstance: SQLite.SQLiteDatabase | undefined;
 
 async function createList(newListTitle: string): Promise<void> {
     return getDatabase()
@@ -32,21 +34,19 @@ async function createList(newListTitle: string): Promise<void> {
       });
 }
 
-let databaseInstance: SQLite.SQLiteDatabase | undefined;
 const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
 
-
-async function createList(newListTitle: string): Promise<void> {
-    return getDatabase()
-      .then((db) => db.executeSql("INSERT INTO List (title) VALUES (?);", [newListTitle]))
-      .then(([results]) => {
-        const { insertId } = results;
-        console.log(`[db] Added list with title: "${newListTitle}"! InsertId: ${insertId}`);
+// async function createList(newListTitle: string): Promise<void> {
+//     return getDatabase()
+//       .then((db) => db.executeSql("INSERT INTO List (title) VALUES (?);", [newListTitle]))
+//       .then(([results]) => {
+//         const { insertId } = results;
+//         console.log(`[db] Added list with title: "${newListTitle}"! InsertId: ${insertId}`);
   
-        // Queue database upload
-        return databaseSync.upload();
-      });
-  }
+//         // Queue database upload
+//         return databaseSync.upload();
+//       });
+//   }
   
   // Get an array of all the lists in the database
   async function getAllLists(): Promise<List[]> {

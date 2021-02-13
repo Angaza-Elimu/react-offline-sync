@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { Text } from 'react-native';
-import { render } from 'react-native-testing-library';
 import NetworkConsumer from '../components/NetworkConsumer';
 import NetworkProvider from '../components/NetworkProvider';
 
@@ -23,17 +22,4 @@ function Consumer() {
   );
 }
 
-describe.only('NetworkConsumer', () => {
-  it(`throws if it's not rendered within the Provider`, () => {
-    expect(() => render(<Consumer />)).toThrow(
-      'NetworkConsumer components should be rendered within NetworkProvider. ' +
-        'Make sure you are rendering a NetworkProvider at the top of your component hierarchy',
-    );
-  });
 
-  it('receives isConnected prop from Provider using context', () => {
-    const { getByTestId } = render(getElement({ children: <Consumer /> }));
-    const textChild = getByTestId('connectionText');
-    expect(textChild.props.children).toBe('Connected: true');
-  });
-});
