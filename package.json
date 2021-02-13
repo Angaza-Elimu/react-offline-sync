@@ -1,12 +1,12 @@
 {
   "name": "offline-sync-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package that allows synchronizing of locally stored data on availability of a network connection",
   "author": "angaza_elimu",
   "license": "LGPL 3.0",
   "repository": "Angaza-Elimu/react-offline-sync",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
