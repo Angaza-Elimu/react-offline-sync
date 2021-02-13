@@ -1,6 +1,6 @@
 {
   "name": "offline-sync-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A package that allows synchronizing of locally stored data on availability of a network connection",
   "author": "angaza_elimu",
   "license": "LGPL 3.0",
