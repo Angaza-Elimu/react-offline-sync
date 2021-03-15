@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+  <head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Hugo 0.79.1">
+<meta name="theme" content="Color Your World -- gitlab.com/rmaguiar/hugo-theme-color-your-world">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<title>Getting Started</title>
+
+
+
+
+
+
+<meta name="robots" content="index follow">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+
+
+
+
+
+
+
+
+
+
+<meta property="og:site_name" content="React-Offline-Sync">
+<meta property="og:title" content="Getting Started">
+
+  <meta property="og:url" content="https://offline-react-sync.github.io/">
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="website">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" type="application/rss+xml" href="https://offline-react-sync.github.io/index.xml" title="React-Offline-Sync">
+
+
+
+
+
+
+
+
+<meta name="theme-color" content="#222">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https:\/\/offline-react-sync.github.io\/",
+      "inLanguage": "en",
+      "name": "React-Offline-Sync",
+      "description": "",
+      "publisher": ""
+    }
+  </script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.e246ac073571bc526cc2632c4609a2eb60304369342d9fe4cb6499dbc0f9627dc48c35fdfb7dc0711672f8942d1cb8ddf46f39e008e867ddcb5add64ea8f1ea4.css" integrity="sha512-4kasBzVxvFJswmMsRgmi62AwQ2k0LZ/ky2SZ28D5Yn3EjDX9&#43;33AcRZy&#43;JQtHLjd9G854AjoZ93LWt1k6o8epA==">
+
+
+
+<noscript>
+
+  
+  
+
+  
+    <meta name="theme-color" content="#dd587c" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#225670" media="(prefers-color-scheme: light)">
+  
+
+  <style>
+  
+    html {
+      --accent: #225670;
+    }
+  
+    .req-js,
+    img.lazyload {
+      display: none;
+    }
+    
+  </style>
+  
+</noscript>
+
+
+
+
+
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-700.woff" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-700.woff2" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-italic.woff" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-italic.woff2" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-regular.woff" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/open-sans-v17-latin-regular.woff2" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/oswald-v29-latin-700.woff" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="/fonts/oswald-v29-latin-700.woff2" as="font" crossorigin="anonymous">
+
+
+
+
+
+<script defer src="/js/lazysizes.min.min.f2ca9a3896206137af53a26aa8bdf8266f7b361b77ec1c82b6f5ce63aaaaad9bdd52892d35f64b54f9a1546c473d2b71131e0eb85e5212dffcdae0416426cc2e.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    
+      'use strict';const PREFERS_LIGHT=window.matchMedia('(prefers-color-scheme: light)');const PREFERS_DARK=window.matchMedia('(prefers-color-scheme: dark)');const ROOT=document.documentElement;const SHEET=document.documentElement.style;const META_THEME_COLOR=document.querySelector('meta[name=theme-color]');function setDark(){ROOT.dataset.mode='dark'};function setLight(){ROOT.dataset.mode='light'};if(localStorage.getItem('isDark')=='true'){setDark()}else if(localStorage.getItem('isDark')=='false'){setLight()}else if(PREFERS_DARK.matches){setDark()}else if(PREFERS_LIGHT.matches){setLight()};function getAccent(){if(ROOT.dataset.mode==='dark'){if(localStorage.getItem('darkAccent')===null){var currentAccent="#dd587c"}else{var currentAccent=localStorage.getItem('darkAccent')
+}}else if(ROOT.dataset.mode==='light'){if(localStorage.getItem('lightAccent')===null){var currentAccent="#225670"}else{var currentAccent=localStorage.getItem('lightAccent')
+}};return currentAccent};var activeAccent=getAccent();SHEET.setProperty('--accent',activeAccent);META_THEME_COLOR.setAttribute('content',activeAccent);function updateAccent(){var activeAccent=getAccent();SHEET.setProperty('--accent',activeAccent);PALETTE.value=activeAccent;META_THEME_COLOR.setAttribute('content',activeAccent);};document.addEventListener('DOMContentLoaded',function(){PALETTE.value=activeAccent;function smoothTransition(){document.body.style.transition=document.querySelector('header').style.transition=document.querySelector('footer').style.transition='background-color .3s ease, color .3s ease'};function userModeChange(){smoothTransition();if(ROOT.dataset.mode=='light'){setDark();localStorage.setItem('isDark','true')
+}else{setLight();localStorage.setItem('isDark','false')
+};updateAccent()};function OSModeChange(){smoothTransition();if(PREFERS_LIGHT.matches){setLight();localStorage.setItem('isDark','false')
+}else if(PREFERS_DARK.matches){setDark();localStorage.setItem('isDark','true')
+};updateAccent()};PREFERS_LIGHT.addListener(OSModeChange);PREFERS_DARK.addListener(OSModeChange);document.querySelector('footer button').addEventListener('click',userModeChange)})
+    
+  </script>
+
+
+
+  </head>
+
+  <body>
+
+    <header>
+      
+
+  <a href="/">React-Offline-Sync</a>
+
+
+
+
+  
+    <nav aria-label="Main menu.">
+      <ul>
+        
+          <li>
+            <a class="btn" href="/">Installation</a>
+          </li>
+        
+      </ul>
+    </nav>
+  
+
+
+    </header>
+
+    <div class="filler">
+      
+
+  
+
+  <main class="index">
+
+    
+      <article>
+      
+        <header>
+        
+          <h1>Getting Started</h1>
+          
+          
+          
+        </header>
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="react-native-offline-first-library">React Native Offline First Library</h1> 
+
+<p>This project is a library that implements an offline first approach with SQLite and React Native (featuring TypeScript and CocoaPods under the hood).The library stores requests to local memory in abscence of a connection and share
+These instructions only cover iOS usage at this time.</p>
+
+
+
+
+
+  <h2 id="install-js-dependencies"><a class="anchor" href="#install-js-dependencies" title='Anchor for "Install JS dependencies".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Install JS dependencies</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm install offline-react-sync
+</code></pre>
+
+
+
+
+
+  <h2 id="install-ios-dependencies-requires-cocoapodshttpscocoapodsorg"><a class="anchor" href="#install-ios-dependencies-requires-cocoapodshttpscocoapodsorg" title='Anchor for "Install iOS dependencies (requires Cocoapods)".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Install iOS dependencies (requires <a href="https://cocoapods.org/">Cocoapods</a>)</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>pushd ios/
+pod install
+popd
+</code></pre>
+
+
+
+
+
+  <h2 id="start-the-react-native-metro-bundler"><a class="anchor" href="#start-the-react-native-metro-bundler" title='Anchor for "Start the React Native Metro Bundler".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Start the React Native Metro Bundler</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm start
+</code></pre>
+
+
+
+
+
+  <h2 id="compile-typescript-source-in-watch-mode"><a class="anchor" href="#compile-typescript-source-in-watch-mode" title='Anchor for "Compile TypeScript source in watch mode".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Compile TypeScript source in watch mode</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm run tsc -- -w
+</code></pre>
+
+
+
+
+
+  <h2 id="run-the-jest-tests-in-watch-mode"><a class="anchor" href="#run-the-jest-tests-in-watch-mode" title='Anchor for "Run the Jest tests in watch mode".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Run the Jest tests in watch mode</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm test
+</code></pre>
+
+
+
+
+
+  <h2 id="open-the-source-in-vs-code"><a class="anchor" href="#open-the-source-in-vs-code" title='Anchor for "Open the source in VS Code".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Open the source in VS Code</h2> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>code .
+</code></pre>
+
+
+
+
+
+  <h2 id="run-and-debug-on-an-ios-simulator"><a class="anchor" href="#run-and-debug-on-an-ios-simulator" title='Anchor for "Run (and debug) on an iOS simulator".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Run (and debug) on an iOS simulator</h2> 
+
+<p>With the &ldquo;React Native Tools&rdquo; VSCode extension installed, open the Debug tab and press the &ldquo;Play&rdquo; button with &ldquo;Debug iOS&rdquo; selected in the dropdown.</p>
+<p>When the simulator opens, press Command-D to open the developer menu. Tap &ldquo;Debug JS Remotely&rdquo; to connect VSCode to the app and enable debugging.</p>
+<p>Alternatively:</p>
+<pre aria-label="Box containing code sample." tabindex=0><code>open ios/RNSQLiteDemo.xcworkspace
+</code></pre>
+<p>Select a simulator of your choice. Press the &ldquo;run&rdquo; button.</p>
+
+
+
+
+
+  <h2 id="e2e-testing-with-detox"><a class="anchor" href="#e2e-testing-with-detox" title='Anchor for "E2E Testing with Detox".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> E2E Testing with Detox</h2> 
+
+<p>End-to-end testing happens from within the <code>e2e/</code> directory:</p>
+<pre aria-label="Box containing code sample." tabindex=0><code>cd e2e/
+npm install
+</code></pre>
+
+
+
+
+
+  <h4 id="build-e2e-tests"><a class="anchor" href="#build-e2e-tests" title='Anchor for "Build E2E tests".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Build E2E tests</h4> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm run test:e2e:build
+</code></pre>
+
+
+
+
+
+  <h4 id="run-e2e-tests"><a class="anchor" href="#run-e2e-tests" title='Anchor for "Run E2E tests".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Run E2E tests</h4> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm run test:e2e
+</code></pre>
+
+
+
+
+
+  <h4 id="run-tests-without-reinstalling-onto-the-simulator"><a class="anchor" href="#run-tests-without-reinstalling-onto-the-simulator" title='Anchor for "Run tests without reinstalling onto the Simulator".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Run tests without reinstalling onto the Simulator</h4> 
+
+<p>Details on this workflow can be <a href="https://github.com/wix/Detox/blob/master/docs/Guide.DevelopingWhileWritingTests.md">found here</a>:</p>
+<pre aria-label="Box containing code sample." tabindex=0><code>npm run test:e2e:reuse
+</code></pre>
+
+
+
+
+
+  <h3 id="troubleshooting"><a class="anchor" href="#troubleshooting" title='Anchor for "Troubleshooting".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Troubleshooting</h3> 
+
+
+
+
+
+
+  <h4 id="run-metro-bundler-and-clear-its-cache"><a class="anchor" href="#run-metro-bundler-and-clear-its-cache" title='Anchor for "Run Metro Bundler and clear it&rsquo;s cache".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Run Metro Bundler and clear it&rsquo;s cache</h4> 
+
+<pre aria-label="Box containing code sample." tabindex=0><code>npm start -- --reset-cache
+</code></pre>
+
+
+
+
+
+  <h2 id="api"><a class="anchor" href="#api" title='Anchor for "API".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> API</h2> 
+
+
+
+
+
+
+  <h3 id="component-utilities"><a class="anchor" href="#component-utilities" title='Anchor for "Component Utilities".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Component Utilities</h3> 
+
+<p>In order to render stuff conditionally with ease. They internally listen to connection changes and also provide an extra layer of reliability by ensuring there is internet access when reporting online. For that, an extra request is made to a remote server.</p>
+
+
+
+
+
+  <h4 id="networkprovider"><a class="anchor" href="#networkprovider" title='Anchor for "NetworkProvider".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> <code>NetworkProvider</code></h4> 
+
+<p>Provider component that injects the network state to children components via <a href="https://reactjs.org/docs/context.html">React Context</a>. Only children prop is required, the rest are optional. It should be used on top of your components hierarchy, ideally in (or close to) the entry point.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
+<span style="color:#a6e22e">type</span> <span style="color:#a6e22e">Props</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Node</span>,
+    <span style="color:#a6e22e">pingTimeout</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>,
+    <span style="color:#a6e22e">pingServerUrl</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.google.com/&#39;</span>,
+    <span style="color:#a6e22e">shouldPing</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+    <span style="color:#a6e22e">pingInterval</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
+    <span style="color:#a6e22e">pingOnlyIfOffline</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+    <span style="color:#a6e22e">pingInBackground</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+    <span style="color:#a6e22e">httpMethod</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">HTTPMethod</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;HEAD&#39;</span>,
+    <span style="color:#a6e22e">customHeaders</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">HTTPHeaders</span> <span style="color:#f92672">=</span> {},
+}
+</code></pre></div>
+
+
+
+
+  <h5 id="config"><a class="anchor" href="#config" title='Anchor for "Config".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Config</h5> 
+
+<p><code>children</code>:  a React Element. This is the only required prop.</p>
+<p><code>pingTimeout</code>: amount of time (in ms) that the component should wait for the ping response. Defaults to <code>10000</code> ms. If you want to use a different value, it&rsquo;s recommended to use a higher one.</p>
+<p><code>pingServerUrl</code>: remote server to ping to. Defaults to <code>https://www.google.com/</code> since it&rsquo;s probably one the most stable servers out there, but you can provide your own if needed. Warning: <a href="http://www.google.com">www.google.com</a> is a blocked domain in China, so if you need your app to be accessible from there, you MUST use another domain.</p>
+<p><code>shouldPing</code>: flag that denotes whether the extra ping check will be performed or not. Defaults to <code>true</code>.</p>
+<p><code>pingInterval</code>: the interval (in ms) you want to ping the server at. Defaults to <code>0</code>, and that means it is not going to check connectivity regularly. If opted in, it&rsquo;s advised not to choose a very small value, because that may drain your battery. Choose wisely. Something around 30000 ms should be fine.</p>
+<p><code>pingOnlyIfOffline</code>: when set to <code>true</code> and <code>pingInterval</code> &gt; 0, it will ping the remote server regularly only if offline. Defaults to <code>false</code>.</p>
+<p><code>pingInBackground</code>: whether or not to check connectivity when app isn&rsquo;t in the foreground. Defaults to <code>false</code>.</p>
+<p><code>httpMethod</code>: http method used to ping the server. Supports HEAD or OPTIONS. Defaults to <code>HEAD</code>.</p>
+<p><code>customHeaders</code>: optional custom headers to add for ping request.</p>
+
+
+
+
+
+  <h5 id="usage"><a class="anchor" href="#usage" title='Anchor for "Usage".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Usage</h5> 
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// index.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NetworkProvider</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;offline-react-sync&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App&#39;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Root</span> <span style="color:#f92672">=</span> () =&gt; (
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">NetworkProvider</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">App</span> <span style="color:#f92672">/&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/NetworkProvider&gt;</span>
+);
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Root</span>;
+</code></pre></div>
+
+
+
+
+  <h4 id="networkconsumer"><a class="anchor" href="#networkconsumer" title='Anchor for "NetworkConsumer".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> <code>NetworkConsumer</code></h4> 
+
+<p>React component that subscribes to connectivity changes. It requires a function as a child. The function receives the current connectivity status and returns a React node. <strong>This component should be rendered within a NetworkProvider in order to work properly</strong>.</p>
+
+
+
+
+
+  <h5 id="props"><a class="anchor" href="#props" title='Anchor for "Props".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Props</h5> 
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">NetworkState</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">isConnected</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>,
+}
+
+<span style="color:#a6e22e">type</span> <span style="color:#a6e22e">Props</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span> ({ <span style="color:#a6e22e">isConnected</span> }<span style="color:#f92672">:</span> <span style="color:#a6e22e">NetworkState</span>) =&gt; <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Node</span>
+}
+</code></pre></div>
+
+
+
+
+  <h5 id="usage-1"><a class="anchor" href="#usage-1" title='Anchor for "Usage".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Usage</h5> 
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Image</span>, <span style="color:#a6e22e">Button</span>, <span style="color:#a6e22e">Text</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-native&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NetworkConsumer</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;offline-sync-react&#39;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ImageViewer</span> <span style="color:#f92672">=</span> () =&gt; (
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">View</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Image</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;foo.com&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">NetworkConsumer</span><span style="color:#f92672">&gt;</span>
+      {({ <span style="color:#a6e22e">isConnected</span> }) =&gt; (
+        <span style="color:#a6e22e">isConnected</span> <span style="color:#f92672">?</span> (
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Button</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Download image&#34;</span> <span style="color:#a6e22e">onPress</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">downloadImage</span>} <span style="color:#f92672">/&gt;</span>
+        ) <span style="color:#f92672">:</span> (
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Text</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Downloading</span> <span style="color:#a6e22e">images</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">disabled</span> <span style="color:#a6e22e">since</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">offline</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Text&gt;</span>
+        )
+      )}
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/NetworkConsumer&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/View&gt;</span>
+);
+</code></pre></div>
+
+
+
+
+  <h2 id="integration-with-redux"><a class="anchor" href="#integration-with-redux" title='Anchor for "Integration with Redux".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Integration with Redux</h2> 
+
+<p>There are 3 features that this library provides in order to leverage offline capabilities in your Redux store: a reducer, a middleware and an offline queue system. You can use all of them or just the ones that suits your needs.</p>
+
+
+
+
+
+  <h3 id="network-reducer"><a class="anchor" href="#network-reducer" title='Anchor for "Network reducer".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> Network reducer</h3> 
+
+<p>A network reducer to be provided to the store.</p>
+
+
+
+
+
+  <h4 id="state"><a class="anchor" href="#state" title='Anchor for "State".'><svg aria-hidden="true"><use xlink:href="#hashtag"/></svg></a> State</h4> 
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">NetworkState</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">isConnected</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>,
+  <span style="color:#a6e22e">actionQueue</span><span style="color:#f92672">:</span> Array<span style="color:#f92672">&lt;*&gt;</span>
+}
+</code></pre></div>
+
+        
+      </article>
+    
+
+  </main>
+
+
+    </div>
+    
+    <footer>
+      
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="req-js">
+  <button class="outline-dashed" title="Change to light/dark mode."><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use xlink:href="#adjust"/></svg></button><input class="outline-dashed" type="color" list="presets" value="#225670" title="Change accent color." aria-label="Change accent color."><datalist id="presets"><option value="#225670"><option value="#dd587c"></datalist>
+</section>
+
+
+
+
+
+    </footer>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true">
+      <symbol viewBox="0 0 512 512" id="adjust">
+        <path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/>
+      </symbol>
+      
+      
+      
+      
+  
+    
+<symbol viewBox="0 0 448 512" id="hashtag">
+  <path d="M440.667 182.109l7.143-40c1.313-7.355-4.342-14.109-11.813-14.109h-74.81l14.623-81.891C377.123 38.754 371.468 32 363.997 32h-40.632a12 12 0 0 0-11.813 9.891L296.175 128H197.54l14.623-81.891C213.477 38.754 207.822 32 200.35 32h-40.632a12 12 0 0 0-11.813 9.891L132.528 128H53.432a12 12 0 0 0-11.813 9.891l-7.143 40C33.163 185.246 38.818 192 46.289 192h74.81L98.242 320H19.146a12 12 0 0 0-11.813 9.891l-7.143 40C-1.123 377.246 4.532 384 12.003 384h74.81L72.19 465.891C70.877 473.246 76.532 480 84.003 480h40.632a12 12 0 0 0 11.813-9.891L151.826 384h98.634l-14.623 81.891C234.523 473.246 240.178 480 247.65 480h40.632a12 12 0 0 0 11.813-9.891L315.472 384h79.096a12 12 0 0 0 11.813-9.891l7.143-40c1.313-7.355-4.342-14.109-11.813-14.109h-74.81l22.857-128h79.096a12 12 0 0 0 11.813-9.891zM261.889 320h-98.634l22.857-128h98.634l-22.857 128z"/>
+</symbol>
+
+
+  
+
+      
+      
+      
+    </svg>
+
+    
+    
+    
+
+      <script>
+        
+          'use strict';const PALETTE=document.querySelector('footer input');PALETTE.onchange=function(){const PICK=PALETTE.value;SHEET.setProperty('--accent',PICK);if(ROOT.dataset.mode==='light'){localStorage.setItem('lightAccent',PICK)}else{localStorage.setItem('darkAccent',PICK)};updateAccent()};
+        
+      </script>
+
+    
+    
+    
+    
+
+  </body>
+</html>

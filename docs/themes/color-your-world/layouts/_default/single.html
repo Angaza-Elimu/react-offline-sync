@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+  <main>
+    <article>
+      <header>
+        
+        <h1>{{ .Title | emojify }}</h1>
+
+        {{ if or .Params.categories .Params.tags }}
+          <section class="terms">
+            <ul>
+              {{- range sort (.GetTerms "categories") ".LinkTitle" "asc" -}}
+                <li class="category"><a class="btn" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+              {{- end -}}
+              {{- range sort (.GetTerms "tags") ".LinkTitle" "asc" -}}
+                <li><a class="btn" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+              {{- end -}}
+            </ul>
+          </section>
+        {{- end -}}
+        
+        {{ if not .Date.IsZero }}
+          <p>
+            {{ if eq .PublishDate .Lastmod }}
+              {{ T "publishedOn" }} <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
+            {{ else }}
+              {{ T "lastUpdatedOn" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+            {{ end }}
+          </p>
+        {{ end }}
+        
+        {{ if .Params.cover }}
+          {{ partial "cover" . }}
+        {{ end }}
+        
+      </header>
+    
+      {{ partial "table-of-contents" . }}
+      {{ partial "processed-content" . }}
+
+    </article>
+  </main>
+
+{{ end }}
+
+{{ define "svg-extra" }}
+  {{ partialCached "content-svg" . }}
+{{ end }}

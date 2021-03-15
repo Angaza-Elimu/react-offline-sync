@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+  <main class="list">
+
+    {{ partialCached "search-form" . }}
+
+    <h1>{{ .Title }}</h1>
+    
+    <section id="search-info">
+      <!-- Info -->
+    </section>
+
+    <ul id="search-results" class="posts">
+      <!-- x-js-template -->
+    </ul>
+    
+    <script id=search-result-template type=text/x-js-template><li><a class=btn href='${link}' title='${title}${titleDate}'><p>${title}</p>${spanDate}</a></li></script>
+  
+  </main>
+
+{{ end }}

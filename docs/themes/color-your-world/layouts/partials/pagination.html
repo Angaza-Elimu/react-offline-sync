@@ -1,0 +1,126 @@
+{{ $pag := .Paginator }}
+
+
+<!-- Number of links either side of the current page. Default value is 2 -->
+{{ $adjacentLinks := 1 }}
+
+<!-- $maxLinks = ($adjacentLinks * 2) + 1 -->
+{{ $maxLinks := (add (mul $adjacentLinks 2) 1) }}
+
+<!-- $lowerLimit = $adjacentLinks + 1 -->
+{{ $lowerLimit := (add $adjacentLinks 1) }}
+
+<!-- $upperLimit = $pag.TotalPages - $adjacentLinks -->
+{{ $upperLimit := (sub $pag.TotalPages $adjacentLinks) }}
+
+<!-- If there's more than one page. -->
+{{ if gt $pag.TotalPages 1 }}
+
+  <nav aria-label="{{ T "ariaPagination" }}">
+    <ul class="pagination">
+      
+      <!-- First page. -->
+      {{ if ne $pag.PageNumber 1 }}
+      <li>
+        <a class="btn" href="{{ $pag.First.URL }}" aria-label="{{ T "ariaGoToFirst" }}">
+          <svg aria-hidden="true">
+            <use transform="rotate(180) translate(-18 -18)" xlink:href="#angle-double-right"/>
+          </svg>
+        </a>
+      </li>
+      {{ end }}
+
+      <!-- Previous page. -->
+      {{ if $pag.HasPrev }}
+      <li>
+        <a class="btn" href="{{ $pag.Prev.URL }}" aria-label="{{ T "ariaGoToPrev" }}">
+          <svg transform="rotate(180)" aria-hidden="true">
+            <use xlink:href="#angle-right"/>
+          </svg>
+        </a>
+      </li>
+      {{ end }}
+    
+      <!-- Page numbers. -->
+      {{ range $pag.Pagers }}
+      
+        {{ $.Scratch.Set "pageNumberFlag" false }}
+        
+        <!-- Advanced page numbers. -->
+        {{ if gt $pag.TotalPages $maxLinks }}
+
+          <!-- Lower limit pages. -->
+          <!-- If the user is on a page which is in the lower limit.  -->
+          {{ if le $pag.PageNumber $lowerLimit }}
+
+            <!-- If the current loop page is less than max_links. -->
+            {{ if le .PageNumber $maxLinks }}
+              {{ $.Scratch.Set "pageNumberFlag" true }}
+            {{ end }}
+
+
+          <!-- Upper limit pages. -->
+          <!-- If the user is on a page which is in the upper limit. -->
+          {{ else if ge $pag.PageNumber $upperLimit }}
+
+            <!-- If the current loop page is greater than total pages minus $maxLinks -->
+            {{ if gt .PageNumber (sub $pag.TotalPages $maxLinks) }}
+              {{ $.Scratch.Set "pageNumberFlag" true }}
+            {{ end }}
+
+
+          <!-- Middle pages. -->
+          {{ else }}
+            
+            {{ if and ( ge .PageNumber (sub $pag.PageNumber $adjacentLinks) ) ( le .PageNumber (add $pag.PageNumber $adjacentLinks) ) }}
+              {{ $.Scratch.Set "pageNumberFlag" true }}
+            {{ end }}
+
+          {{ end }}
+
+        
+        <!-- Simple page numbers. -->
+        {{ else }}
+
+          {{ $.Scratch.Set "pageNumberFlag" true }}
+
+        {{ end }}
+
+        <!-- Output page numbers. -->
+        {{ if eq ($.Scratch.Get "pageNumberFlag") true }}
+          <li {{ if eq . $pag }}class="current"{{ end }}>
+          {{ if eq . $pag }}
+            <p>{{ .PageNumber }}</p>
+          {{ else }}
+            <a class="btn" href="{{ .URL }}" aria-label="{{ T "ariaGoToPage" . }}" >{{ .PageNumber }}</a>
+          {{ end }}
+          </li>
+        {{ end }}
+
+      {{ end }}
+
+      <!-- Next page. -->
+      {{ if $pag.HasNext }}
+      <li>
+        <a class="btn" href="{{ $pag.Next.URL }}" aria-label="{{ T "ariaGoToNext" }}">
+          <svg aria-hidden="true">
+            <use xlink:href="#angle-right"/>
+          </svg>
+        </a>
+      </li>
+      {{ end }}
+
+      <!-- Last page. -->
+      {{ if ne $pag.PageNumber $pag.TotalPages }}
+      <li>
+        <a class="btn" href="{{ $pag.Last.URL }}" aria-label="{{ T "ariaGoToLast" }}">
+          <svg aria-hidden="true">
+            <use xlink:href="#angle-double-right"/>
+          </svg>
+        </a>
+      </li>
+      {{ end }}
+
+    </ul>
+  </nav>
+{{ end }}

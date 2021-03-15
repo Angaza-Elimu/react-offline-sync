@@ -1,0 +1,29 @@
+<!-- Custom or default copyright -->
+{{ if (templates.Exists "partials/custom/copyright.html") }}
+  {{ partial "custom/copyright" . }}
+{{ else }}
+  {{ with .Site.Copyright }}
+    <p>{{ . | markdownify | emojify }}</p>
+  {{ end }}
+{{ end }}
+
+<!--
+  TODO
+  Maybe I should rethink this
+-->
+
+{{ if gt (len .Translations) 0 }}
+
+  {{ $processedLangs := slice }}
+
+  {{ range .Translations }}
+    {{ $currentLang := printf `<a rel="alternate" hreflang="%s" href="%s">%s</a>` .Language.Lang .RelPermalink .Language.LanguageName }}
+    {{ $processedLangs = $processedLangs | append $currentLang }}
+  {{ end }}
+
+  <p>{{ T "alsoAvailable" }}: {{ delimit $processedLangs ", " (T "and") }}.</p>
+
+{{ end }}
+
+<!-- Footer button and color picker -->
+{{ partialCached "footer-opt" . }}

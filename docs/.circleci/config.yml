@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cibuilds/hugo:latest
+    working_directory: ~/hugo
+    environment:
+      HUGO_BUILD_DIR: ~/hugo/docs
+    steps:
+
+       # install git
+      - run: sudo apt install git -y
+
+      # checkout the repository
+      - checkout
+
+      # install git submodules for managing third-party dependencies
+      - run: git submodule sync && git submodule update --init
+
+      - run: hugo -v -d $HUGO_BUILD_DIR

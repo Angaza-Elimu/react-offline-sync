@@ -1,0 +1,17 @@
+baseURL = "https://angaza-elimu.github.io/offline-react-sync.github.io/"
+languageCode = "en-us"
+title = "React-Offline-Sync"
+theme = "color-your-world"
+RelativeURLs=true
+CanonifyURLs=true
+
+[menu]
+    [[menu.main]]
+        identifier = "install"
+        name = "Installation"
+        url  = "/"
+        weight = 1
+        
+
+
+    
