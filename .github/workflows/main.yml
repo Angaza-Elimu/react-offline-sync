@@ -34,7 +34,7 @@ jobs:
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.4
         with:
-          jestArgs: --coverage --coverageReporters="json-summary"
+          jestArgs: --forceExit --coverage --coverageReporters="json-summary"
         
 
       # Coverage upload
