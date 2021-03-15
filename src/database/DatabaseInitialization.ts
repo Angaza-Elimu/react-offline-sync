@@ -38,10 +38,6 @@ export class DatabaseInitialization {
       });
   }
 
-  public createTable(){
-
-  }
-
   private  transformJsontoCreateStatement(tableDescriptions: any[]): any{
     let statementsArray: string[] = [];
     tableDescriptions.forEach(table => {
@@ -59,6 +55,7 @@ export class DatabaseInitialization {
     return statementsArray;
     
   }
+transformJsontoCreateStatement(tableDesc)
 
 
   // Perform initial setup of the database tables

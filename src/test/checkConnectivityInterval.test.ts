@@ -4,6 +4,7 @@ import {
   getInterval,
 } from '../utils/checkConnectivityInterval';
 
+console.error = jest.fn()
 describe('checkConnectivityInterval', () => {
   const mockConnectivityCheck = jest.fn();
   const setInterval = jest.fn(() => ('1' as unknown) as NodeJS.Timeout);
