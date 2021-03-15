@@ -2,14 +2,11 @@ import SQLite from "react-native-sqlite-storage";
 import { DatabaseInitialization } from "./DatabaseInitialization";
 import { DATABASE } from "./Constants";
 import { List } from "../types/List";
-import { ListItem } from "../types/ListItem"
-import { DropboxDatabaseSync } from "../sync/dropbox/DropboxDatabaseSync";
+import { ListItem } from "../types/ListItem";
 import { AppState, AppStateStatus } from "react-native";
 
 
 export interface Database {
-    // Create
-    createTable
     // Read
     getAllLists(): Promise<List[]>;
     getListItems(list: List, doneItemsLast: boolean): Promise<ListItem[]>;
@@ -30,11 +27,10 @@ async function createList(newListTitle: string): Promise<void> {
         console.log(`[db] Added list with title: "${newListTitle}"! InsertId: ${insertId}`);
   
         // Queue database upload
-        return databaseSync.upload();
+        return;
       });
 }
 
-const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
 
 // async function createList(newListTitle: string): Promise<void> {
 //     return getDatabase()
@@ -82,7 +78,7 @@ const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
         console.log(`[db] ListItem with "${text}" created successfully with id: ${results.insertId}`);
   
         // Queue database upload
-        return databaseSync.upload();
+        return;
       });
   }
   
@@ -130,7 +126,7 @@ const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
         console.log(`[db] List item with id: ${listItem.id} updated.`);
   
         // Queue database upload
-        return databaseSync.upload();
+        return;
       });
   }
   
@@ -146,7 +142,7 @@ const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
         console.log(`[db] Deleted list titled: "${list.title}"!`);
   
         // Queue database upload
-        return databaseSync.upload();
+        return;
       });
   }
   
@@ -213,8 +209,7 @@ const databaseSync: DropboxDatabaseSync = new DropboxDatabaseSync();
   
   // Export the functions which fulfill the Database interface contract
   export const sqliteDatabase: Database = {
-    createList,
-    addListItem,
+  
     getAllLists,
     getListItems,
     updateListItem,

@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.17% </span>
+                <span class="strong">64.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>60/82</span>
+                <span class='fraction'>53/82</span>
             </div>
         
             
@@ -36,16 +36,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.92% </span>
+                <span class="strong">38.46% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/13</span>
+                <span class='fraction'>5/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.71% </span>
+                <span class="strong">67.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/70</span>
+                <span class='fraction'>47/70</span>
             </div>
         
             
@@ -328,15 +328,15 @@
 <a name='L270'></a><a href='#L270'>270</a>
 <a name='L271'></a><a href='#L271'>271</a>
 <a name='L272'></a><a href='#L272'>272</a>
-<a name='L273'></a><a href='#L273'>273</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L273'></a><a href='#L273'>273</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -356,10 +356,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -380,8 +380,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -627,11 +627,11 @@ export function <span class="fstat-no" title="function not covered" >netInfoEven
 <span class="cstat-no" title="statement not covered" >  return N</span>etInfo.addEventListener(emit);
 }
 &nbsp;
-export function intervalChannelFn(interval: number) {
-  return (emit: (param: boolean) =&gt; unknown) =&gt; {
-    const iv = setInterval(() =&gt; emit(true), interval);
-    return () =&gt; {
-      clearInterval(iv);
+export function <span class="fstat-no" title="function not covered" >intervalChannelFn(i</span>nterval: number) {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >(</span>e</span>mit: (param: boolean) =&gt; unknown) =&gt; {
+    const iv = <span class="cstat-no" title="statement not covered" >setInterval(<span class="fstat-no" title="function not covered" >(</span>) =&gt; <span class="cstat-no" title="statement not covered" >e</span>mit(</span>true), interval);
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >(</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      clearInterval(</span>iv);
     };
   };
 }
@@ -651,9 +651,9 @@ export function <span class="fstat-no" title="function not covered" >createNetIn
  * @param interval
  * @returns {Channel&lt;T&gt;}
  */
-export function createIntervalChannel(interval: number, channelFn: Function) {
-  const handler = channelFn(interval);
-  return eventChannel(handler);
+export function <span class="fstat-no" title="function not covered" >createIntervalChannel(i</span>nterval: number, channelFn: Function) {
+  const handler = <span class="cstat-no" title="statement not covered" >channelFn(i</span>nterval);
+<span class="cstat-no" title="statement not covered" >  return e</span>ventChannel(handler);
 }
 &nbsp;
 /**
@@ -879,7 +879,7 @@ export default function* networkSaga(args?: ConnectivityArgs) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Feb 03 2021 03:34:14 GMT+0300 (East Africa Time)
+                at Mon Mar 15 2021 08:40:56 GMT+0300 (East Africa Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
