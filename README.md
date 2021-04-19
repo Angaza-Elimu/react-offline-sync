@@ -1,9 +1,7 @@
 
 # React Native Offline First and sync
 
-[![codecov](https://codecov.io/gh/Angaza-Elimu/react-offline-sync/branch/master/graph/badge.svg?token=TF8YXPQDYX)](https://codecov.io/gh/Angaza-Elimu/react-offline-sync)
-
-[![Builds](https://github.com/Angaza-Elimu/react-offline-sync/actions/workflows/main.yml/badge.svg)]
+[![codecov](https://codecov.io/gh/Angaza-Elimu/react-offline-sync/branch/master/graph/badge.svg?token=TF8YXPQDYX)](https://codecov.io/gh/Angaza-Elimu/react-offline-sync) ![Builds](https://github.com/Angaza-Elimu/react-offline-sync/actions/workflows/main.yml/badge.svg)
 
 This project is a library that implements an offline first approach with SQLite and React Native (featuring TypeScript and CocoaPods under the hood). Once authorized, the database can be synced between multiple devices. 
 
