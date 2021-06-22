@@ -103,14 +103,88 @@ describe('OFFLINE_ACTION action type', () => {
 });
 
 describe('REMOVE_ACTION_FROM_QUEUE action type', () => {
+  it('removes the action from the queue properly', () => {
+    const prevState = getState(
+      false,
+      prevActionToRetry2,
+      prevActionToRetry1,
+      prevActionToRetry1WithDifferentPayload,
+    );
+    // Different object references but same shape, checking that deep equal works correctly
+    const action = actionCreators.removeActionFromQueue({
+      ...prevActionToRetry2,
+    });
 
+    expect(networkReducer(prevState, action)).toEqual(
+      getState(
+        false,
+        prevActionToRetry1,
+        prevActionToRetry1WithDifferentPayload,
+      ),
+    );
+  });
 });
 
-describe('QUEUE_SEMAPHORE_CHANGE action type', () => {
-  
+describe('thunks', () => {
+  function fetchThunk(dispatch: Dispatch) {
+    dispatch({ type: 'FETCH_DATA_REQUEST' });
+  }
+
+  describe('FETCH_OFFLINE_MODE action type', () => {
+    describe('action with meta.retry !== true', () => {
+      it('should NOT add the action to the queue', () => {
+        const action = actionCreators.fetchOfflineMode(fetchThunk);
+        expect(networkReducer(initialState, action)).toEqual(initialState);
+      });
+    });
+
+    describe('action with meta.retry === true', () => {
+      it('should add the action to the queue if the thunk is different', () => {
+        const prevState = getState(false);
+
+        // Property 'meta' does not exist on type '(dispatch: Dispatch<AnyAction>) => void'
+        (fetchThunk as any).meta = {
+          retry: true,
+        };
+        const action = actionCreators.fetchOfflineMode(fetchThunk);
+
+        expect(networkReducer(prevState, action)).toEqual(
+          getState(false, fetchThunk),
+        );
+      });
+
+      it(`should remove the thunk and add it back at the end of the queue 
+      if it presents the same shape`, () => {
+        const thunkFactory = (param: any) => {
+          function thunk1(dispatch: Dispatch) {
+            dispatch({ type: 'FETCH_DATA_REQUEST', payload: param });
+          }
+          return thunk1;
+        };
+        const thunk = thunkFactory('foo');
+        const prevState = getState(false, thunk);
+
+        const similarThunk = thunkFactory('bar');
+        (similarThunk as any).meta = {
+          retry: true,
+        };
+        const action = actionCreators.fetchOfflineMode(similarThunk);
+        const nextState = networkReducer(prevState, action);
+
+        expect(nextState).toEqual(getState(false, similarThunk));
+      });
+    });
+  });
+
+  describe('REMOVE_ACTION_FROM_QUEUE action type', () => {
+    it('removes the thunk from the queue properly', () => {
+      const prevState = getState(false, fetchThunk);
+      const action = actionCreators.removeActionFromQueue(fetchThunk);
+
+      expect(networkReducer(prevState, action)).toEqual(getState(false));
+    });
+  });
 });
-
-
 
 describe('dismiss feature', () => {
   const actionEnqueued1 = {
