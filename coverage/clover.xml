@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1624382354104" clover="3.2.0">
-  <project timestamp="1624382354104" name="All files">
-    <metrics statements="353" coveredstatements="281" conditionals="222" coveredconditionals="146" methods="81" coveredmethods="55" elements="656" coveredelements="482" complexity="0" loc="353" ncloc="353" packages="3" files="16" classes="16"/>
+<coverage generated="1624387239733" clover="3.2.0">
+  <project timestamp="1624387239733" name="All files">
+    <metrics statements="353" coveredstatements="293" conditionals="222" coveredconditionals="157" methods="81" coveredmethods="58" elements="656" coveredelements="508" complexity="0" loc="353" ncloc="353" packages="3" files="16" classes="16"/>
     <package name="components">
       <metrics statements="110" coveredstatements="75" conditionals="57" coveredconditionals="25" methods="21" coveredmethods="11"/>
       <file name="NetworkConnectivity.tsx" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/components/NetworkConnectivity.tsx">
@@ -128,17 +128,17 @@
       </file>
     </package>
     <package name="redux">
-      <metrics statements="181" coveredstatements="160" conditionals="131" coveredconditionals="105" methods="42" coveredmethods="33"/>
+      <metrics statements="181" coveredstatements="169" conditionals="131" coveredconditionals="114" methods="42" coveredmethods="34"/>
       <file name="actionCreators.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/redux/actionCreators.ts">
-        <metrics statements="10" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
+        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="1" count="4" type="stmt"/>
         <line num="4" count="7" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="2" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="32" count="8" type="stmt"/>
         <line num="37" count="7" type="stmt"/>
         <line num="42" count="4" type="stmt"/>
       </file>
@@ -215,7 +215,7 @@
         <line num="185" count="1" type="stmt"/>
       </file>
       <file name="createReducer.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/redux/createReducer.ts">
-        <metrics statements="35" coveredstatements="25" conditionals="24" coveredconditionals="13" methods="8" coveredmethods="6"/>
+        <metrics statements="35" coveredstatements="33" conditionals="24" coveredconditionals="21" methods="8" coveredmethods="7"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -224,29 +224,29 @@
         <line num="15" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
         <line num="23" count="2" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="35" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="38" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="40" count="2" type="cond" truecount="3" falsecount="1"/>
-        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="35" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
         <line num="83" count="3" type="stmt"/>
         <line num="84" count="9" type="stmt"/>
         <line num="85" count="9" type="stmt"/>
         <line num="88" count="3" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="104" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="105" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="108" count="8" type="stmt"/>
+        <line num="105" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="13" type="stmt"/>
         <line num="110" count="1" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="122" count="0" type="stmt"/>
+        <line num="115" count="5" type="stmt"/>
+        <line num="122" count="2" type="stmt"/>
         <line num="124" count="3" type="stmt"/>
         <line num="126" count="0" type="stmt"/>
         <line num="128" count="2" type="stmt"/>
@@ -327,7 +327,7 @@
       </file>
     </package>
     <package name="utils">
-      <metrics statements="62" coveredstatements="46" conditionals="34" coveredconditionals="16" methods="18" coveredmethods="11"/>
+      <metrics statements="62" coveredstatements="49" conditionals="34" coveredconditionals="18" methods="18" coveredmethods="13"/>
       <file name="checkConnectivityInterval.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/checkConnectivityInterval.ts">
         <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
         <line num="1" count="3" type="stmt"/>
@@ -365,12 +365,12 @@
         <line num="13" count="6" type="stmt"/>
       </file>
       <file name="getSimilarActionInQueue.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/getSimilarActionInQueue.ts">
-        <metrics statements="6" coveredstatements="3" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="2"/>
+        <metrics statements="6" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
         <line num="1" count="3" type="stmt"/>
-        <line num="14" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="3" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
       </file>
       <file name="makeHttpRequest.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/makeHttpRequest.ts">
@@ -403,8 +403,8 @@
         <line num="92" count="5" type="stmt"/>
       </file>
       <file name="nonNullable.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/nonNullable.ts">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="4" type="stmt"/>
       </file>
       <file name="wait.ts" path="/Users/DevAC/Desktop/Angaza/react-offline-sync/src/utils/wait.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
