@@ -1,4 +1,3 @@
-/* @flow */
 import {
   testSaga,
   TestApi,
@@ -194,6 +193,103 @@ describe('sagas', () => {
     });
   });
 
+  describe('connectionIntervalSaga', () => {
+    const { shouldPing, ...params } = args;
+    function takeChannelAndGetConnection(saga: TestApi, isConnected: boolean) {
+      return saga
+        .next()
+        .call(createIntervalChannel, 3000, intervalChannelFn)
+        .next('channel')
+        .take('channel')
+        .next()
+        .select(networkSelector)
+        .next({ isConnected });
+    }
+    it(`forks checkInternetAccessSaga if it's NOT connected or it is,
+     but pingOnlyIfOffline is false`, () => {
+      // @ts-ignore
+      let saga: TestApiWithEffectsTesters = testSaga(connectionIntervalSaga, {
+        ...params,
+        pingOnlyIfOffline: false,
+        pingInterval: 3000,
+      });
+      saga = takeChannelAndGetConnection(saga, true);
+      saga
+        .fork(checkInternetAccessSaga, {
+          pingTimeout: params.pingTimeout,
+          pingServerUrl: params.pingServerUrl,
+          httpMethod: params.httpMethod,
+          pingInBackground: params.pingInBackground,
+          customHeaders: args.customHeaders,
+        })
+        .next()
+        .take('channel');
+    });
+
+    it(`does NOT fork checkInternetAccessSaga if it's connected 
+    AND pingOnlyIfOffline is true`, () => {
+      // @ts-ignore
+      let saga: TestApiWithEffectsTesters = testSaga(connectionIntervalSaga, {
+        ...params,
+        pingOnlyIfOffline: true,
+        pingInterval: 3000,
+      });
+      saga = takeChannelAndGetConnection(saga, true);
+      saga.take('channel');
+    });
+
+    it('closes the channel when it ends emitting', () => {
+      const mockCloseFn = jest.fn();
+      const mockChannel = {
+        close: mockCloseFn,
+        isConnected: false,
+        actionQueue: [],
+        isQueuePaused: false,
+      };
+      const iterator = connectionIntervalSaga({
+        ...params,
+        pingOnlyIfOffline: true,
+        pingInterval: 3000,
+      });
+      iterator.next();
+      // This will make take(mockChannel) throw an error, since it's not a valid
+      // channel or a valid pattern for take() inside the infinite loop,
+      // hence executing the finally block.
+      iterator.next(mockChannel);
+      try {
+        // @ts-ignore
+        iterator.next(true);
+        expect(mockCloseFn).toHaveBeenCalled();
+        // eslint-disable-next-line
+      } catch (e) {}
+    });
+
+    it('does NOT close the channel if redux-saga does NOT yield a cancelled effect', () => {
+      const mockCloseFn = jest.fn();
+      const mockChannel = {
+        close: mockCloseFn,
+        isConnected: false,
+        actionQueue: [],
+        isQueuePaused: false,
+      };
+      const iterator = connectionIntervalSaga({
+        ...params,
+        pingOnlyIfOffline: true,
+        pingInterval: 3000,
+      });
+      iterator.next();
+      // This will make take(mockChannel) throw an error, since it's not a valid
+      // channel or a valid pattern for take() inside the infinite loop,
+      // hence executing the finally block.
+      iterator.next(mockChannel);
+      try {
+        // @ts-ignore
+        iterator.next(false);
+        expect(mockCloseFn).not.toHaveBeenCalled();
+        // eslint-disable-next-line
+      } catch (e) {}
+    });
+  });
 
   describe('checkInternetAccessSaga', () => {
     const params = {
